@@ -56,6 +56,19 @@ function removeDuplicates(arr) {
         index) => arr.indexOf(item) === index);
 };
 
+function runWhenFinished() {
+  // TODO: replace this line with a function. Ideally this function will
+  // be a POST to the Pi, but will execute only once, i.e., not make a new
+  // POST request every 2.5 seconds.
+  console.log(removeDuplicates(order).toString());
+
+  // stop watching for changes
+  observer.disconnect();
+
+  // stop running checkFinished() every 2.5s
+  clearInterval(keepCheckingIfFinished);
+};
+
 // function to track when all cells have been filled
 function checkFinished() {
   // initialize an empty array to store the values in all cells
@@ -71,16 +84,13 @@ function checkFinished() {
   // if there are no more empty cells in the grid, i.e., when the puzzle is
   // complete, then execute below code.
   if (all_cells.indexOf('empty') === -1) {
-      // TODO: replace this line with a function. Ideally this function will
-      // be a POST to the Pi, but will execute only once, i.e., not make a new
-      // POST request every 2.5 seconds.
-      console.log(removeDuplicates(order).toString());
+    runWhenFinished();
   }
   // else {
   //   console.log('not done yet!');
   // }
 };
 
-setInterval(checkFinished, 2500);
+var keepCheckingIfFinished = setInterval(checkFinished, 2500);
 
 // [1,2,9,18,36,5,77,8,38,12,19,14,13,57,22,23,11,49,40,67,58,41,53,35,74,60,62,44,69,73,65,70,20,10,28,29,24,15,59,50,75,72,54,61,78,79,48,52,51,6,7,33,42,43,34,39,30]

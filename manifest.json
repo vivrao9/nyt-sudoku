@@ -1,13 +1,19 @@
 {
 	"manifest_version": 3,
-	"name": "nyt_performance_tracker",
-	"version": "0.2",
-	"description": "Setting up a browser extension to tracker the order in which cells are filled in the NYT Sudoku (Easy) grid.",
+	"name": "nyt_sudoku_watcher",
+	"version": "0.3",
+	"description": "Browser extension to track the order in which cells are filled on the NYT Games Sudoku grid.",
 	"author": "Vivek Rao",
 	"content_scripts": [
 	    {
 		"matches": ["https://www.nytimes.com/puzzles/sudoku/*"]	,
 		"js": ["browser-tracker.js"]
 	    }
-	]
+	],
+	"icons": {
+		"16": "icons/x16.ico",
+		"24": "icons/x24.ico",
+		"32": "icons/x32.ico",
+		"64": "icons/x64.ico"
+		 }
 }
