@@ -3,6 +3,8 @@
 // it is filled in order
 // e.g., if the array is [14, 17, 51], cell 14 was first filled, then
 // cell 17, and lastly 51
+// it's extremely important to note that the cells are zero-indexed,
+// i.e., the first cell (top-left corner) is cell 0
 order = [];
 
 // testing!
