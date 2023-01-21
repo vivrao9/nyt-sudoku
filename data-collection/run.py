@@ -19,10 +19,10 @@ easy_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/easy.csv', mode='a', head
 
 # df_medium = pd.read_csv('/mnt/c/users/Vivek Rao/Desktop/Programming/Miscellaneous/sudoku/medium.csv', header = 0)
 # df_medium
-medium_temp = pd.DataFrame([df['medium']['print_date'],df['medium']['day_of_week'],df['medium']['puzzle_id'], df['medium']['puzzle_data']['hints'], df['medium']['puzzle_data']['puzzle'], df['medium']['puzzle_data']['solution']]).T
-medium_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/medium.csv', mode='a', header=False, index = False)
+# medium_temp = pd.DataFrame([df['medium']['print_date'],df['medium']['day_of_week'],df['medium']['puzzle_id'], df['medium']['puzzle_data']['hints'], df['medium']['puzzle_data']['puzzle'], df['medium']['puzzle_data']['solution']]).T
+# medium_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/medium.csv', mode='a', header=False, index = False)
 
 # df_hard = pd.read_csv('/mnt/c/users/Vivek Rao/Desktop/Programming/Miscellaneous/sudoku/hard.csv', header = 0)
 # df_hard
-hard_temp = pd.DataFrame([df['hard']['print_date'],df['hard']['day_of_week'],df['hard']['puzzle_id'], df['hard']['puzzle_data']['hints'], df['hard']['puzzle_data']['puzzle'], df['hard']['puzzle_data']['solution']]).T
-hard_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/hard.csv', mode='a', header=False, index = False)
+# hard_temp = pd.DataFrame([df['hard']['print_date'],df['hard']['day_of_week'],df['hard']['puzzle_id'], df['hard']['puzzle_data']['hints'], df['hard']['puzzle_data']['puzzle'], df['hard']['puzzle_data']['solution']]).T
+# hard_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/hard.csv', mode='a', header=False, index = False)
