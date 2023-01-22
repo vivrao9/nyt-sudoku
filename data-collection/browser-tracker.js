@@ -8,7 +8,10 @@
 order = [];
 
 // testing!
-console.log('testing!');
+console.log('testing! POST/XHR request this time');
+
+// pull date of the current sudoku
+var doks_date = document.getElementsByClassName('pz-game-date')[0].textContent;
 
 // define a function to compare two arrays to see if
 // all elements of the first array are present in the
@@ -60,7 +63,30 @@ function runWhenFinished() {
   // TODO: replace this line with a function. Ideally this function will
   // be a POST to the Pi, but will execute only once, i.e., not make a new
   // POST request every 2.5 seconds.
-  console.log(removeDuplicates(order).toString());
+  // console.log(removeDuplicates(order).toString());
+
+  const json_to_push = `{"date": "${doks_date}", "order": [${removeDuplicates(order).toString()}]}`
+  console.log(json_to_push);
+
+  // make POST REQUEST TO web server
+  // await fetch('http://192.168.0.188:8090/', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(json_to_push)
+  // });
+
+  let xhr = new XMLHttpRequest();
+  let url = "http://192.168.0.188:8090/";
+
+  // open a connection
+  xhr.open("POST", url, true);
+
+  // Set the request header i.e. which type of content you are sending
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send(JSON.stringify(json_to_push));
 
   // stop watching for changes
   observer.disconnect();
@@ -86,9 +112,9 @@ function checkFinished() {
   if (all_cells.indexOf('empty') === -1) {
     runWhenFinished();
   }
-  // else {
-  //   console.log('not done yet!');
-  // }
+  else {
+    console.log('not done yet!');
+  }
 };
 
 var keepCheckingIfFinished = setInterval(checkFinished, 2500);
