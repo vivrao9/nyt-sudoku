@@ -1,16 +1,15 @@
 from flask import Flask, request
-#from flask_cors import CORS
-from flask_csp.csp import csp_header
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-# CORS(app)
-@csp_header({'default-src':"'none'",'script-src':"'self'", 'connect-src': "*"})
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
+@cross_origin()
+def index():
+	print(request.data)
+	return "Hello World!"
 
-def post():
-	print(request.data) # initially request.data
-	return ''
-
-if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=8090)
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=8181, debug=True)
