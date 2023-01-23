@@ -1,28 +1,60 @@
-import requests
-import json
+import requests, json, pandas as pd, sqlite3
 from bs4 import BeautifulSoup
+from traceback import format_exc
+from sqlalchemy.types import Integer, String
 
 web = requests.get("https://www.nytimes.com/puzzles/sudoku/easy")
 soup = BeautifulSoup(web.text, 'html.parser')
 data  = soup.find_all("script")[0].string
 data = data[(data.index('= ')+2):]
 
+# convert to json
 df = json.loads(data)
 
-import pandas as pd
+# make connection to sqlite3
+conn = sqlite3.connect('nyt-sudoku.db')
+cursor = conn.cursor()
 
-# df_easy = pd.read_csv('/Desktop/nyt-sudoku/sudoku/data-collection/easy.csv', header=0)
-#C:\\Users\\Vivek Rao\\Desktop\\Programming\\Miscellaneous\\sudoku\\easy.csv', header = 0)
+# define table columns
+tbl_cols = ['date', 'day_of_week', 'puzzle_id', 'hint', 'puzzle', 'solution']
+tbl_schema = {
+	"date": String(),
+	"day_of_week": String(),
+	"puzzle_id": Integer(),
+	"hint": String(),
+	"puzzle": String(),
+	"solution": String()
+}
+
 # df_easy
-easy_temp = pd.DataFrame([df['easy']['print_date'],df['easy']['day_of_week'],df['easy']['puzzle_id'], df['easy']['puzzle_data']['hints'], df['easy']['puzzle_data']['puzzle'], df['easy']['puzzle_data']['solution']]).T
-easy_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/easy.csv', mode='a', header=False, index = False)
+try:
+	# create temp dataframe from easy data
+	easy_temp = pd.DataFrame([str(df['easy']['print_date']), str(df['easy']['day_of_week']), str(df['easy']['puzzle_id']), str(df['easy']['puzzle_data']['hints']), str(df['easy']['puzzle_data']['puzzle']), str(df['easy']['puzzle_data']['solution'])]).T
+	# easy_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/easy.csv', mode='a', header=False, index = False)
+	easy_temp.columns = tbl_cols
+	easy_temp.to_sql(name='doks_easy', con=conn, if_exists='append', index=False)
 
-# df_medium = pd.read_csv('/mnt/c/users/Vivek Rao/Desktop/Programming/Miscellaneous/sudoku/medium.csv', header = 0)
+except:
+	print(format_exc())
+
+
 # df_medium
-# medium_temp = pd.DataFrame([df['medium']['print_date'],df['medium']['day_of_week'],df['medium']['puzzle_id'], df['medium']['puzzle_data']['hints'], df['medium']['puzzle_data']['puzzle'], df['medium']['puzzle_data']['solution']]).T
-# medium_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/medium.csv', mode='a', header=False, index = False)
+try:
+	medium_temp = pd.DataFrame([str(df['medium']['print_date']), str(df['medium']['day_of_week']), str(df['medium']['puzzle_id']), str(df['medium']['puzzle_data']['hints']), str(df['medium']['puzzle_data']['puzzle']), str(df['medium']['puzzle_data']['solution'])]).T
+	# medium_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/medium.csv', mode='a', header=False, index = False)
+	medium_temp.columns = tbl_cols
+	medium_temp.to_sql(name='doks_medium', con=conn, if_exists='append', index=False)
 
-# df_hard = pd.read_csv('/mnt/c/users/Vivek Rao/Desktop/Programming/Miscellaneous/sudoku/hard.csv', header = 0)
+except:
+	print(format_exc())
+
+
 # df_hard
-# hard_temp = pd.DataFrame([df['hard']['print_date'],df['hard']['day_of_week'],df['hard']['puzzle_id'], df['hard']['puzzle_data']['hints'], df['hard']['puzzle_data']['puzzle'], df['hard']['puzzle_data']['solution']]).T
-# hard_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/hard.csv', mode='a', header=False, index = False)
+try:
+	hard_temp = pd.DataFrame([str(df['hard']['print_date']), str(df['hard']['day_of_week']), str(df['hard']['puzzle_id']), str(df['hard']['puzzle_data']['hints']), str(df['hard']['puzzle_data']['puzzle']), str(df['hard']['puzzle_data']['solution'])]).T
+	# hard_temp.to_csv('~/Desktop/nyt-sudoku/data-collection/hard.csv', mode='a', header=False, index = False)
+	hard_temp.columns = tbl_cols
+	hard_temp.to_sql(name='doks_hard', con=conn, if_exists='append', index=False)
+
+except:
+	print(format_exc())
