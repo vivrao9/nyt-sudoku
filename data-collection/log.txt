@@ -1,0 +1,5 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/marty-mcpi/Desktop/nyt-sudoku/data-collection/server.py", line 4, in <module>
+    from flask_cors import CORS, cross_origin
+ModuleNotFoundError: No module named 'flask_cors'
