@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "nyt_sudoku_watcher",
-	"version": "0.3",
+	"version": "0.5",
 	"description": "Browser extension to track the order in which cells are filled on the NYT Games Sudoku grid.",
 	"author": "Vivek Rao",
 	"content_scripts": [
