@@ -33,9 +33,9 @@ def index():
 
 	# if things go wrong
 	except:
-		print(format_exc())
-		print('--------------------------------------------------\n\n')
-		return 'Error!'
+# 		print(format_exc())
+# 		print('--------------------------------------------------\n\n')
+		return format_exc()
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port=8181, debug=True)
