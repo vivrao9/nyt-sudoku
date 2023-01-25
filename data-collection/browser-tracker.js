@@ -94,7 +94,7 @@ function runWhenFinished() {
 
   // Set the request header i.e. which type of content you are sending
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Connection", "close");
+  // xhr.setRequestHeader("Connection", "close");
 
   // full send!
   xhr.send(JSON.stringify(json_to_push));
