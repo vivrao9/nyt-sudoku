@@ -20,7 +20,7 @@ def index():
 		print(request.json)
 
 		# connect to SQLite
-		conn = sqlite3.connect('nyt-sudoku.db')
+		conn = sqlite3.connect('data-collection/nyt-sudoku.db')
 		cursor = conn.cursor()
 
 		# insert into SQLite database

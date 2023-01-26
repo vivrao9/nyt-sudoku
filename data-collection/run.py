@@ -12,7 +12,7 @@ data = data[(data.index('= ')+2):]
 df = json.loads(data)
 
 # make connection to sqlite3
-conn = sqlite3.connect('nyt-sudoku.db')
+conn = sqlite3.connect('data-collection/nyt-sudoku.db')
 cursor = conn.cursor()
 
 # define table columns
