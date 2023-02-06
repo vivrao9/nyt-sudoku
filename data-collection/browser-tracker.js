@@ -19,16 +19,16 @@ seconds_array = [];
 time_since_last_change = Date.now();
 
 // testing!
-console.log('testing!');
+console.log("testing!");
 
 // pull date of the current sudoku
-var doks_date = document.getElementsByClassName('pz-game-date')[0].textContent;
+var doks_date = document.getElementsByClassName("pz-game-date")[0].textContent;
 
 // define a function to compare two arrays to see if
 // all elements of the first array are present in the
 // second array
-var compare_arrays = function(arr_a, arr_b) {
-    return arr_a.every((val) => arr_b.includes(val))
+var compare_arrays = function (arr_a, arr_b) {
+  return arr_a.every((val) => arr_b.includes(val));
 };
 
 // make mutation observer
@@ -36,31 +36,36 @@ var compare_arrays = function(arr_a, arr_b) {
 // this callback function is triggered
 // whenever there is a chnage to the element
 const observer = new MutationObserver((event) => {
-  event.forEach(each_event => {
+  event.forEach((each_event) => {
+    // only push MutationRecords that have the following matching clases.
+    // from manual observation, these are the classes associated with
+    // the last changed cell. Pick out the data-cell number and insert
+    // it into the array ```order```.
+    if (
+      compare_arrays(
+        ["su-cell", "selected", "guessed"],
+        Array.from(each_event.target.classList)
+      )
+    ) {
+      // the above line will return two MutationRecords that are nearly
+      // identical, but we only need one. Filtering out below:
+      if (each_event.attributeName == "aria-label") {
+        // add the data-cell attribute of the changed cell to the order
+        // array
+        order.push(each_event.target.getAttribute("data-cell"));
 
-        // only push MutationRecords that have the following matching clases.
-        // from manual observation, these are the classes associated with
-        // the last changed cell. Pick out the data-cell number and insert
-        // it into the array ```order```.
-        if (compare_arrays(['su-cell', 'selected', 'guessed'], Array.from(each_event.target.classList))) {
+        // add the number of elapsed seconds to seconds_array
+        seconds_array.push(
+          Math.floor(Date.now() - time_since_last_change) / 1000
+        );
 
-          // the above line will return two MutationRecords that are nearly
-          // identical, but we only need one. Filtering out below:
-          if (each_event.attributeName == "aria-label") {
-                // add the data-cell attribute of the changed cell to the order
-                // array
-                order.push(each_event.target.getAttribute('data-cell'));
-
-                // add the number of elapsed seconds to seconds_array
-                seconds_array.push(Math.floor(Date.now() - time_since_last_change)/1000);
-
-                // reset the time_since_last_change variable to be the current
-                // instant; the next time the previous line runs, it will be
-                // the difference between two date objects
-                time_since_last_change = Date.now();
-            }
-          }
-        })
+        // reset the time_since_last_change variable to be the current
+        // instant; the next time the previous line runs, it will be
+        // the difference between two date objects
+        time_since_last_change = Date.now();
+      }
+    }
+  });
 });
 
 // get reference to the su-board class
@@ -81,7 +86,7 @@ observer.observe(board, config);
 // are filled, i.e., none are empty
 function runWhenFinished() {
   // compile a JSON object with the data we need
-  const json_to_push = `{"date": "${doks_date}", "order": [${order.toString()}], "times": [${seconds_array.toString()}]}`
+  const json_to_push = `{"date": "${doks_date}", "order": [${order.toString()}], "times": [${seconds_array.toString()}]}`;
   console.log(json_to_push);
 
   let xhr = new XMLHttpRequest();
@@ -104,7 +109,7 @@ function runWhenFinished() {
 
   // stop running checkFinished() every 2.5s
   clearInterval(keepCheckingIfFinished);
-};
+}
 
 // function to track when all cells have been filled
 function checkFinished() {
@@ -113,19 +118,20 @@ function checkFinished() {
 
   // read in all elements with .su-cell
   // these are simply cells in the grid/box
-  const cells = document.getElementsByClassName('su-cell');
+  const cells = document.getElementsByClassName("su-cell");
 
-  Array.from(cells).forEach(cell => {
-    all_cells.push(cell.getAttribute('aria-label'))});
+  Array.from(cells).forEach((cell) => {
+    all_cells.push(cell.getAttribute("aria-label"));
+  });
 
   // if there are no more empty cells in the grid, i.e., when the puzzle is
   // complete, then execute below code.
-  if (all_cells.indexOf('empty') === -1) {
+  if (all_cells.indexOf("empty") === -1) {
     runWhenFinished();
   }
   // else {
   //   console.log('not done yet!');
   // }
-};
+}
 
 var keepCheckingIfFinished = setInterval(checkFinished, 2500);
