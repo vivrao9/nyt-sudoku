@@ -35,7 +35,7 @@ try:
 	easy_temp.to_sql(name='doks_easy', con=conn, if_exists='append', index=False)
 
 except:
-	print(format_exc())
+	return format_exc()
 
 
 # df_medium
@@ -46,7 +46,7 @@ try:
 	medium_temp.to_sql(name='doks_medium', con=conn, if_exists='append', index=False)
 
 except:
-	print(format_exc())
+	return format_exc()
 
 
 # df_hard
@@ -57,4 +57,4 @@ try:
 	hard_temp.to_sql(name='doks_hard', con=conn, if_exists='append', index=False)
 
 except:
-	print(format_exc())
+	return format_exc()
