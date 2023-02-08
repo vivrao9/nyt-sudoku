@@ -1,4 +1,4 @@
-import requests, json, pandas as pd, sqlite3
+import requests, json, pandas as pd, sqlite3, datetime
 from bs4 import BeautifulSoup
 from traceback import format_exc
 from sqlalchemy.types import Integer, String
@@ -26,6 +26,11 @@ tbl_schema = {
 	"solution": String()
 }
 
+# print out today's date
+print('\n\n')
+print(str(datetime.date.today()))
+print('\n')
+
 # df_easy
 try:
 	# create temp dataframe from easy data
@@ -35,7 +40,7 @@ try:
 	easy_temp.to_sql(name='doks_easy', con=conn, if_exists='append', index=False)
 
 except:
-	return format_exc()
+	print(format_exc())
 
 
 # df_medium
@@ -46,7 +51,7 @@ try:
 	medium_temp.to_sql(name='doks_medium', con=conn, if_exists='append', index=False)
 
 except:
-	return format_exc()
+	print(format_exc())
 
 
 # df_hard
@@ -57,4 +62,6 @@ try:
 	hard_temp.to_sql(name='doks_hard', con=conn, if_exists='append', index=False)
 
 except:
-	return format_exc()
+	print(format_exc())
+
+print('------------------------------------------------')
