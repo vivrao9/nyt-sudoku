@@ -1,7 +1,7 @@
 # What is this repo?
 I've always loved doing the sudoku. Doing it over and over and recording my time over the years has made me wonder how I can get faster at solving the puzzle. Enter analytics.
 
-For this project, I created a browser extension that tracks how the NYT sudoku grid is filled out. Thie repo also contains a SQLite3 database tracking daily NYT sudoku grids and my sudoku performance from the extension.
+For this project, I created a browser extension that tracks how I fill out the NYT sudoku grid. Thie repo also contains a SQLite3 database tracking daily NYT sudoku grids and my sudoku performance from the extension.
 
 This repo is divided into a few sections:
 
