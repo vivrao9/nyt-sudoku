@@ -15,4 +15,4 @@ def get_row_col(num):
         tuple of integers of the form (row, column)
 
     '''
-	return ( num // 9, num % 9 )
+    return ( num // 9, num % 9 )
