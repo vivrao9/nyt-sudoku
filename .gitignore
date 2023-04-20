@@ -1,3 +1,5 @@
 data-collection/cert.pem
 data-collection/key.pem
 data-collection/log.txt
+nohup.out
+data-collection/nohup.out
