@@ -1,4 +1,6 @@
-def naked_for_how_long(doks_order, puzzle, solution):
+from get_candidates import get_candidates
+
+def naked_for_how_long(doks_order, puzzle, solution, num_naked_singles=False):
     # create copies of the variables so I don't accidentally
     # update the DataFrame
     # https://stackoverflow.com/questions/60643279/how-to-avoid-unintentional-changing-a-global-variable-when-using-it-as-a-local-v
@@ -44,4 +46,7 @@ def naked_for_how_long(doks_order, puzzle, solution):
         # update puzzle with solution
         puzzle[doks_order[step]] = solution[doks_order[step]]
 
-    return for_how_long, num_naked_singles
+    if num_naked_singles == True:
+        return for_how_long, num_naked_singles
+    else:
+        return for_how_long
