@@ -9,3 +9,5 @@ nohup: ignoring input
  * Debugger is active!
  * Debugger PIN: 683-468-636
 192.168.0.217 - - [20/Apr/2023 21:41:35] "[37mPOST / HTTP/1.1[0m" 200 -
+192.168.0.217 - - [21/Apr/2023 18:59:40] "[37mOPTIONS / HTTP/1.1[0m" 200 -
+192.168.0.217 - - [21/Apr/2023 18:59:40] "[37mPOST / HTTP/1.1[0m" 200 -
