@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="A data-driven essay exploring my love for the sudoku, how I fill out
+      the grid and whether there are any patterns in the way I fill it out."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <!-- import Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- import Bootstrap -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>A love letter to the sudoku</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="header"></div>
+    <div class="hedline">
+      <h1>A love letter to the sudoku</h1>
+      <h6>By <a href="https://vivrao9.github.io" target="_blank">Vivek Rao</a></h6>
+      <p class="pronunciation">Published: Oct. 31, 2023</p>
+    </div>
+
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <p>I’ve always loved doing the sudoku.</p>
+
+          <p>It started in the summer of 2015. I was a senior in high school and had just started the college application process. Like many teenagers, I signed up for the SAT. Like many teenagers, I compiled a list of safety and target schools. And, like many teenagers, I was beginning to panic about acceptances.</p>
+
+          <p>One particular afternoon, I found myself down a rabbit hole full of self doubt and insecurity. I felt like I wasn’t smart enough, or my grades would pull down my application, or that my essays wouldn’t stand out.</p>
+
+          <p>I needed to challenge this voice in my head. I knew I was smart and capable (or so I thought). I looked around for a way to prove it and saw the Sunday newspaper on the coffee table in front of me, open to the puzzles page. I told myself if I could solve that day’s sudoku, I could prove to myself that I had what it takes to get acceptances. I solved that sudoku and haven’t stopped doing it since.</p>
+
+          <p>I got so into the puzzle in high school, I completed 100 sudokus in 100 consecutive days. I’d take our newspaper’s puzzles page to school and solve it during class. A classmate once said while most students had their phones out under their desks, I had the sudoku. When I moved to the US for college, I bought a book full of puzzles. I was crazy about it.</p>
+
+          <p>And then I stopped doing it just as quickly as I had started.</p>
+
+          <hr>
+
+          <!-- <div class="section-break"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <!-- TODO: Replace root below with Grid (or something that makes more sense) and refactor React app -->
+          <!-- https://trello.com/c/UmP1uYiH/26-refactor-code-so-you-only-call-components-in-places-ie-do-you-really-need-appjs  -->
+          <!-- <div id="root"></div> -->
+
+          <p>In October 2020, a girl I liked texted me: “Do u wanna have a sudoku race 👉🥺👈”</p>
+
+          <p>We solved that day’s New York Times’ easy puzzle and <code>xx</code> sudokus since then to see who could complete it first.</p>
+
+          <p>We even started a spreadsheet to track our times. Our competitive natures pushed us to challenge each other almost daily. Like in high school, I was constantly thinking about how to get faster.</p>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <div id="beeswarm" alt="This space contains a data visualization in the form of a beeswarm chart. Each node, or dot, represents one sudoku that I've completed. The dots are arranged in order of how long I took to complete that sudoku."></div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center" style="margin-top: 1rem;">
+        <div class="col-md-6">
+          <p>Then, in January 2023, I made a breakthrough. I started tracking what grids I fill out and how I fill them out. And in the weeks since, I started to analyze my performance to look for patterns and ways I could speed up. And, as a throwback to my high school self, I decided to analyze 100 sudokus from this year to see what I could learn. This essay has a few insights I’ve found.</p>
+          
+          <h4>Patterns</h4>
+          <p>Like <a href="https://fivethirtyeight.com/features/the-man-who-solved-jeopardy/#:~:text=One%20possible%20explanation%20for%20the%20increased%20likelihood%20that%20respondents%20will%20pick%20a%20Daily%20Double%20earlier%20is%20that%20the%20placement%20of%20the%20clues%20aren%E2%80%99t%20random%2C%20which%20informs%20this%20hopping%20strategy.">Jeopardy! and its daily doubles</a>, the Times’ sudoku grids tend to have the same cells prefilled. On average, the easy sudoku comes with xx values prefilled.</p>
+
+          <div class="toggles">
+            <input type="button" name="easy" value="Easy" aria-pressed="true" onclick="setPreDiff(easy)"/>
+            <input type="button" name="medium" value="Medium" aria-pressed="false" />
+            <input type="button" name="hard" value="Hard" aria-pressed="false" />
+          </div>
+
+          <div id="prefilledGrid"></div>
+
+          <h4>Let's start with my strategy</h4>
+          <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can only be one possible value</b>. (They’re also called sole candidates, but why would you call them that when you could also say naked singles? I digress.)</p>
+
+          <p>Using the process of elimination, I identify naked singles and solve those cells. I only ever fill in a value when it’s a naked single, i.e., I never guess. In other words, how long a naked single remains naked is an indicator for how closely I’m paying attention to that cell — or maybe even that area of the grid (naked singles in your area? ok i’ll stop)</p>
+        </div>
+      </div>
+    </div>
+
+    </body>
+</html>

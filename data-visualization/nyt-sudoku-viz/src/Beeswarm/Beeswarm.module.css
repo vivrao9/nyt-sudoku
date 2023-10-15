@@ -1,0 +1,32 @@
+g line {
+    color: #dedede;
+    stroke-width: 0.5;
+}
+
+g text   {
+    color: #6f6f6f;
+    font-family: 'Consolas New', monospace;
+    font-size: 1rem;
+    text-anchor: start;
+    margin-left: 0.2rem;
+}
+
+.data-loading   {
+    width: 100%;
+    min-height: 20px;
+    background-color: var(--orange_-2);
+    margin: auto;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #beeswarm div {
+      transform: rotate(90deg);
+      height: 80vw;
+      display: block;
+    }
+    
+    text {
+      transform: rotate(-90deg) translate(0px, -25px);
+    }
+  }

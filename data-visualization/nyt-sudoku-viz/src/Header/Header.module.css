@@ -1,0 +1,12 @@
+.navbar-text {
+    font-family: 'PT Serif', serif;
+    font-weight: normal;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.navbar-hed {
+    font-family: 'PT Serif', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+}

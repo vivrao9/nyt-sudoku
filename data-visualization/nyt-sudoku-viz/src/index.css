@@ -1,0 +1,159 @@
+/* import fonts — copied from portfolio CSS */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&display=swap');
+
+/* import styles from portfolio */
+@import url('https://vivrao9.github.io/style.css');
+
+:root {
+  /* first add lemon yellow */
+  --lemon_-2: #FFF3B0;
+  --lemon_-1: #FFEB75;
+  --lemon_: #FFDA00;
+  --lemon_1: #C5A900;
+  --lemon_2: #9B8500;
+
+  /* next, sky blue */
+  --sky_-2: #A5E1F8;
+  --sky_-1: #7ED2F2;
+  --sky_: #40C6F9;
+  --sky_1: #1C9ACA;
+  --sky_2: #08759E;
+
+  /* next, purple */
+  --purple_-2: #EEAFF5;
+  --purple_-1: #F37FFF;
+  --purple_: #E40EFA;
+  --purple_1: #B206C4;
+  --purple_2: #8A0497;
+
+  /* next, orange */
+  --orange_-2: #FBC990;
+  --orange_-1: #FFAA4C;
+  --orange_: #FA8400;
+  --orange_1: #C56800;
+  --orange_2: #854B0A;
+
+  /* lastly, the neutrals */
+  --black: #000000;
+  --white: #FFFFFF;
+  --light_gray_: #D9D9D9;
+}
+
+p a {
+  border-bottom: 2px solid black;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1  {
+  font-family: 'PT Serif', 'serif';
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h2  {
+  font-family: 'PT Serif', 'serif';
+  font-size: 2rem;
+}
+
+h3  {
+  font-family: 'PT Sans', 'sans-serif';
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+h4  {
+  font-family: 'PT Sans', 'sans-serif';
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+h5  {
+  font-family: 'PT Sans', 'sans-serif';
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+h6  {
+  font-family: 'PT Sans', 'sans-serif';
+  font-size: 1.25rem;
+}
+
+.captions {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: Consolas, source-code-pro, Menlo, Monaco, 'Courier New',
+    monospace;
+}
+
+.hedline  {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 2rem;  
+}
+
+.hedline a  {
+  border-bottom: 2px solid black;
+  color: black;
+  text-decoration: none;
+}
+
+.hedline a:hover  {
+  text-decoration: none;
+}
+
+.mobile-spacer  {
+  margin-top: 2rem;
+}
+
+#beeswarm {
+  margin-bottom: 2rem;
+}
+
+div.toggles  {
+  display: flex;
+  margin: 0;
+  justify-content: right;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+div.toggles > input:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+div.toggles > input:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+div.toggles > input {
+  background-color: var(--orange_-2);
+  font-family: "Inter", sans-serif;
+  color: #151515;
+  margin: 0;
+}
+
+div.toggles > input[aria-pressed="true"]  {
+  background-color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .mobile-spacer  {
+    margin-top: 0rem;
+  }
+}
