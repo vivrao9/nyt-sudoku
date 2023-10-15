@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sqlite3
 import json
 from flask import Flask, request
