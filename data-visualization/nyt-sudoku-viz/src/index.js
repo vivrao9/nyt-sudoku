@@ -5,6 +5,7 @@ import './index.css'
 import Header from './Header/Header.js'
 import Beeswarm from './Beeswarm/Beeswarm'
 import Grid from './Grid/Grid'
+import SectionBreak from './SectionBreak/SectionBreak.js'
 // import GetPrefilledData from './GetPrefilledData/GetPrefilledData'
 
 const header = ReactDOM.createRoot(document.getElementById('header'))
@@ -18,6 +19,13 @@ const beeswarm = ReactDOM.createRoot(document.getElementById('beeswarm'))
 beeswarm.render(
   <>
     <Beeswarm />
+  </>
+)
+
+const sectionBreak = ReactDOM.createRoot(document.getElementById('section-break'))
+sectionBreak.render(
+  <>
+    <SectionBreak />
   </>
 )
 

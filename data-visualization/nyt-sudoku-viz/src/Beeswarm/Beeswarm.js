@@ -14,6 +14,7 @@ import {
   mean,
   max,
   csv,
+  csvParse,
   scaleLinear,
   select,
   axisBottom,
@@ -22,6 +23,8 @@ import {
   forceX,
   forceY
 } from 'd3'
+
+// import {fs} from 'fs';
 
 // Moment.js imports
 import { duration } from 'moment' // https://momentjs.com/docs/#/durations/
@@ -47,21 +50,23 @@ function Beeswarm () {
 
   // create a function to color beeswarm dots differently
   // depending on when they were completed
-  function colorDots ({ dot, index }) {
-    if (index === (timesData.length - 1)) {
-      return '#E40EFA'
-    } else if (index >= (timesData.length - 6)) {
-      return '#40C6F9'
-    } else {
-      return '#BBBBBB'
-    }
-  };
+  // function colorDots ({ dot, index }) {
+  //   if (index === (timesData.length - 1)) {
+  //     return '#E40EFA'
+  //   } else if (index >= (timesData.length - 6)) {
+  //     return '#40C6F9'
+  //   } else {
+  //     return '#BBBBBB'
+  //   }
+  // };
 
-  // console.log("Data loaded:\n", timesData);
+  console.log("Data loaded:\n", timesData);
+
+  // const interim_data = csvParse(fs.readFileSync("../data/gsheets_times.csv"));
 
   useEffect(() => {
     // load data
-    csv(timesUrl).then(data => {
+    csv(timesUrl).then(data => { // initially timesUrl
       data = data.map(d => '00:' + d["Vivek's time"])
       data = data.map(d => duration(d))
       data = data.filter(d => d > 0)
@@ -125,7 +130,7 @@ function Beeswarm () {
     })
     .attr('cy', innerHeight / 2)
     .attr('r', circleRadius)
-    .attr('fill', (d, index) => colorDots(d, index))
+    .attr('fill', "#BBBBBB") // (d, index) => colorDots(d, index))
 
   // simulate dots moving
   simulation.nodes(timesData)

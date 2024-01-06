@@ -1,0 +1,38 @@
+.section_break  {
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem;
+}
+
+.small_square   {
+    border: 2.5px solid #999999;
+    transform: rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    transition: transform .7s ease-in-out;
+}
+
+.big_square   {
+    border: 1.5px solid #999999;
+    transform: rotate(45deg);
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    transition: transform .7s ease-in-out;
+
+    div {
+        border: 1px solid #999999;
+    }
+}
+
+.big_square:hover   {
+    transform: rotate(405deg);
+}
+
+.small_square:hover   {
+    transform: rotate(405deg);
+}

@@ -98,11 +98,13 @@
 
           <div class="toggles">
             <input type="button" name="easy" value="Easy" aria-pressed="true" onclick="setPreDiff(easy)"/>
-            <input type="button" name="medium" value="Medium" aria-pressed="false" />
-            <input type="button" name="hard" value="Hard" aria-pressed="false" />
+            <input type="button" name="medium" value="Medium" aria-pressed="false" onclick="setPreDiff(med)"/>
+            <input type="button" name="hard" value="Hard" aria-pressed="false" onclick="setPreDiff(hard)"/>
           </div>
 
           <div id="prefilledGrid"></div>
+
+          <div id="section-break"></div>
 
           <h4>Let's start with my strategy</h4>
           <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can only be one possible value</b>. (They’re also called sole candidates, but why would you call them that when you could also say naked singles? I digress.)</p>
