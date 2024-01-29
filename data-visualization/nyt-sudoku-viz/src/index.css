@@ -83,9 +83,15 @@ h6  {
   font-size: 1.25rem;
 }
 
-.captions {
+img {
+  width: 80%;
+  margin: auto;
+  display: block;
+}
+
+.caption {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 body {
@@ -128,7 +134,7 @@ code {
 div.toggles  {
   display: flex;
   margin: 0;
-  justify-content: right;
+  justify-content: flex-end;
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -142,14 +148,14 @@ div.toggles > input:last-of-type {
 }
 
 div.toggles > input {
-  background-color: var(--orange_-2);
+  background-color: var(--lemon_-2);
   font-family: "Inter", sans-serif;
   color: #151515;
   margin: 0;
 }
 
 div.toggles > input[aria-pressed="true"]  {
-  background-color: var(--orange);
+  background-color: var(--lemon_);
 }
 
 @media (min-width: 768px) {

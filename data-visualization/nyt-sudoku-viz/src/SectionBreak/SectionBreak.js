@@ -7,7 +7,7 @@ function SectionBreak() {
   <div className={styles.section_break}>
     <div className={styles.small_square}></div>
     <div className={styles.big_square}>
-      {range(4).map(d => <div key={Math.random}></div>)}
+      {range(4).map((d,i) => <div key={i}></div>)}
     </div>
     <div className={styles.small_square}></div>
   </div>

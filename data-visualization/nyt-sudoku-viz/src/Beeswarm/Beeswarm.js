@@ -21,7 +21,8 @@ import {
   forceCollide,
   forceSimulation,
   forceX,
-  forceY
+  forceY,
+  gray
 } from 'd3'
 
 // import {fs} from 'fs';
@@ -35,7 +36,7 @@ import { range } from '../utils'
 // declare variables at the top
 const timesUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoqnPWcu7Vi2cUAIcH78PFITa-gaVWhQVeEpM4X0Nc4Nd0fHZk98xb221AL3byyU-qAiO4UcZmGrMl/pub?gid=0&single=true&output=csv'
 
-const width = window.innerWidth
+const width = 600
 const height = window.innerWidth < 768 ? 600: 400
 const margin = { top: 20, right: 40, bottom: 20, left: 5 }
 const innerHeight = height - margin.top - margin.bottom
@@ -48,35 +49,28 @@ function Beeswarm () {
   const [timesData, setTimesData] = useState(null)
   const chartRef = useRef(null)
 
-  // create a function to color beeswarm dots differently
-  // depending on when they were completed
-  // function colorDots ({ dot, index }) {
-  //   if (index === (timesData.length - 1)) {
-  //     return '#E40EFA'
-  //   } else if (index >= (timesData.length - 6)) {
-  //     return '#40C6F9'
-  //   } else {
-  //     return '#BBBBBB'
-  //   }
-  // };
-
-  console.log("Data loaded:\n", timesData);
-
   // const interim_data = csvParse(fs.readFileSync("../data/gsheets_times.csv"));
 
   useEffect(() => {
-    // load data
-    csv(timesUrl).then(data => { // initially timesUrl
-      data = data.map(d => '00:' + d["Vivek's time"])
-      data = data.map(d => duration(d))
-      data = data.filter(d => d > 0)
-      setTimesData(data)
-    }).catch((error) => {
+
+    //trying to use async
+    const fetchData = async () => {
+      // load data
+      csv(timesUrl).then(data => { // initially timesUrl
+        data = data.map(d => '00:' + d["Vivek's time"])
+        data = data.map(d => duration(d))
+        data = data.filter(d => d > 0)
+        setTimesData([...data])
+        console.log("Data loaded:\n", timesData)  
+    })
+    }
+    
+    fetchData().catch((error) => {
       console.error('Error fetching data:', error);
     });
   }, [])
 
-  console.log(timesData)
+  // console.log(timesData)
 
   // if data is still loading, return a div that says that
   if (!timesData) {
@@ -130,7 +124,7 @@ function Beeswarm () {
     })
     .attr('cy', innerHeight / 2)
     .attr('r', circleRadius)
-    .attr('fill', "#BBBBBB") // (d, index) => colorDots(d, index))
+    .attr('fill', "#999999")
 
   // simulate dots moving
   simulation.nodes(timesData)
@@ -141,8 +135,7 @@ function Beeswarm () {
     })
 
   return <>
-    <h4>After solving <code>{timesData.length}</code> sudokus, my average time is <code>{avgTimeAsStr}</code></h4>
-    <p>They say you need to do something 10,000 times before you become an expert at it.</p>
+    <h4>Between Oct. 2020 and Jan. 2024, I solved <code>{timesData.length}</code> sudokus, with an average time of <code>{avgTimeAsStr}</code></h4>
     <svg ref={chartRef} width={innerWidth} height={innerHeight} />
   </>
 

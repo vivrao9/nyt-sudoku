@@ -1,7 +1,7 @@
 .doks_grid  {
     outline: 2px solid black;
-    max-width: 80%;
-    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
@@ -19,9 +19,11 @@
 }
 
 .grid__cell {
-    /* position: relative; */
-    /* display: flex;
-    flex-wrap: wrap; */
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-wrap: wrap;
     border: 1px solid #9c9c9c;
     border-right: none;
     border-bottom: none;
@@ -36,17 +38,18 @@
 
 .grid__cell > p {
     display: none;
+}
+
+.grid__cell > p.active  {
+    /* display: flex; */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     margin: auto;
 }
 
-.grid__cell.active > p  {
-    display: block;
-    margin: auto;
-    color: #000000;
-}
-
-.grid__cell.neighbor > p  {
-    display: block;
+.grid__cell > p.neighbor  {
+    display: flex;
     color: #9c9c9c;
 }
 

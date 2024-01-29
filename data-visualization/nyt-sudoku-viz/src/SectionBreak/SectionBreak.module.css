@@ -7,7 +7,7 @@
 }
 
 .small_square   {
-    border: 2.5px solid #999999;
+    border: 1.75px solid #999999;
     transform: rotate(45deg);
     width: 1rem;
     height: 1rem;

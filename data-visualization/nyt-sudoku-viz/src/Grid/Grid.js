@@ -1,8 +1,9 @@
 import styles from './Grid.module.css'
 import '../index.css'
 import { range } from '../utils.js'
-import { scaleQuantize, extent } from 'd3'
-import { useState } from 'react'
+import { scaleQuantize, extent, select, color } from 'd3'
+import { useEffect, useState, useRef } from 'react'
+import { useHover } from '@uidotdev/usehooks'
 
 // prefilledData = {
 //     'easy': [148, 135, 139, 138, 138, 130, 127, 131, 122, 138, 125, 130, 116,
@@ -17,125 +18,81 @@ import { useState } from 'react'
         
 // }
 
+
 // =======================================================================
 // start with Cell component
 function Cell({ index, cellColor, cellValue }) {
-    // create state to track if Cell is being hovered on
-    const [isHovered, setIsHovered] = useState(false)
 
-    // set state with list of neighbors
-    const [listOfNeighbors, setListOfNeighbors] = useState([])
+    // use hover hook
+    const [ref, hovering] = useHover()
 
-    function findNeighbors(index)    {
-        // given a cell, find the (up to) eight neighboring cells
-        // and return their indices
-        // if a cell has fewer than eight neighbors (literal edge
-        // cases, for example), return a 0
-        let neighbors = [index - 10, index - 9, index - 8, index - 1, index + 1, index + 8, index + 9, index + 10]
-        // console.log(neighbors)
+    // create hover hook
+    // useEffect(() => {
+    //   const hoveredOnCell
+    // })
 
-        if (index % 9 === 0)   {
-            neighbors[0] = 0
-            neighbors[3] = 0
-            neighbors[5] = 0
-        }
-        
-        if (index % 9 === 8)   {
-            neighbors[2] = 0
-            neighbors[4] = 0
-            neighbors[7] = 0
-        }
-        
-        if (index < 9)   {
-            neighbors[0] = 0
-            neighbors[1] = 0
-            neighbors[2] = 0
-        }
-        
-        if (index > 71)   {
-            neighbors[5] = 0
-            neighbors[6] = 0
-            neighbors[7] = 0
-        }
+//     // set state/style for hovered-on cell
+//     const [ hoveredStyle, setHoveredStyle ] = useState('none')
 
-        neighbors.map(neighbor => neighbor < 0 ? 0 : neighbor)
-        neighbors.map(neighbor => neighbor > 80 ? 0 : neighbor)
-        
-        neighbors = neighbors.filter(x => x !== 0)
-
-        setListOfNeighbors(neighbors)
-    }
-    
-    function currentlyHovered({index})  {
-        // flip isHovered state
-        setIsHovered(!isHovered)
-
-        if (isHovered)  {
-
-            // const display_dict = Object.fromEntries(range(81).map(x => [x, 'none']))
-            // const neighbors = findNeighbors(index)
-            // neighbors.map(neighbor => display_dict[neighbor] = 'block')
-            // display_dict[index] = 'block'
-            // return display_dict
-            console.log('index: ', index)
-            console.log('listOfNeighbors: ', listOfNeighbors)
-            console.log('neighbors: ', findNeighbors(index))
-            findNeighbors(index)
-        }
-
-        else    {
-            // return Object.fromEntries(range(81).map(x => [x, 'none']))
-        }
-
-        // who are this cell's immediate neighbors?
-        // console.log(findNeighbors(index))
-
-        // is data-cell=2 ever a neighbor?
-        // console.log("List of neighbors includes 2? ", listOfNeighbors.includes(2))
-
-
-    }
+    // create state to track what cell is currently being hovered on
+    const [ hoveredOnCell, setHoveredOnCell ] = useState(null)
 
     // set cell style
     const cellStyle = { backgroundColor: cellColor || 'none',
-                        color: cellColor === '#794B0A' ? 'white' : 'black'} // change color of text for color contrast
-
-    // set paragraph style
-    // const paraStyle = { display: opacities[index] }
+                        color: cellColor === '#9B8500' ? 'white' : 'black'} // change color of text for color contrast
     
-    return <div className={`${styles.grid__cell}${isHovered ? ' active' : ''}${listOfNeighbors.includes(index) ? ' neighbor' : ''}`}
+    return <div className={`${styles.grid__cell}`} // ${listOfNeighbors.includes({index}) ? 'neighbor' : ''}`}
                 key={index} // key or else React will yell at us
+                ref={ref}
                 data-cell={index} // data-cell to update/access this later
                 style={cellStyle} // change style above to see it reflect here
-                onMouseEnter={() => currentlyHovered({index})} // hover events
-                onMouseLeave={() => currentlyHovered({index})}
+                // onMouseEnter={() => setHoveredOnCell(index)}
+                // onMouseLeave={() => setHoveredOnCell(null)}
                 >
-                    <p>
-                        {Math.round((cellValue * 1000)) / 10 + '%'}
+                    <p style={{display: hovering ? 'flex' : 'none',
+                               margin: 'auto'}}>
+                        {cellValue}
                     </p>
             </div>
 }
 
 // ======================================================================================
 // create Grid component
-function Grid({ heatmap = range(81), length }) {
+function Grid({ heatmap = range(81) }) {
+
+    function findNeighbors(index)    {
+        // given a cell, find the (up to) eight neighboring cells
+        // and return their indices
+        const gridSize = 9;
+        const row = Math.floor(index / gridSize);
+        const col = index % gridSize;
+      
+        const neighbors = [];
+      
+        for (let i = Math.max(0, row - 1); i <= Math.min(gridSize - 1, row + 1); i++) {
+            for (let j = Math.max(0, col - 1); j <= Math.min(gridSize - 1, col + 1); j++) {
+              const neighborIndex = i * gridSize + j;
+              if (neighborIndex !== index && neighborIndex >= 0 && neighborIndex < gridSize * gridSize) {
+                neighbors.push(neighborIndex);
+              }
+            }
+          }
+      
+        return neighbors;
+      }
+
     // convert string of list to list
     heatmap = JSON.parse(heatmap)
     
     // convert raw numbers of percentages
-    heatmap = heatmap.map(item => item / length)
-    
-    // log to console
-    // console.log(heatmap)
-    // console.log(extent(heatmap))
-    
+    heatmap = heatmap.map(item => item)    
     
     // create a D3 scales from min to max of the values
     // in the heatmap array argument
     var heatmap_scale = scaleQuantize()
                         .domain(extent(heatmap))
-                        // .range(["#FBC990", "orange_-1", "orange_", "orange_1", "orange_2"])
-                        .range(["#FBC990", "#FFAA4C", "#FA8400", "#C56800", "#854B0A"])
+                        // .range(["#FBC990", "#FFAA4C", "#FA8400", "#C56800", "#854B0A"]) // oranges
+                        .range(['#FFF3B0', '#FFEB75', '#FFDA00', '#C5A900', '#9B8500']) // yellows
 
     // console.log(heatmap_scale(heatmap))
     
@@ -145,7 +102,8 @@ function Grid({ heatmap = range(81), length }) {
                 return <Cell key={index}
                         index={index}
                         cellColor={heatmap_scale(heatmap[index])}
-                        cellValue={heatmap[index]} />
+                        cellValue={heatmap[index]}
+                        className={`${styles.grid__cell}`} />
 })}
         </div>
     )

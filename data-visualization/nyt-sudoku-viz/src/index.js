@@ -6,6 +6,7 @@ import Header from './Header/Header.js'
 import Beeswarm from './Beeswarm/Beeswarm'
 import Grid from './Grid/Grid'
 import SectionBreak from './SectionBreak/SectionBreak.js'
+import ScrollySingles from './ScrollySingles/ScrollySingles.js'
 // import GetPrefilledData from './GetPrefilledData/GetPrefilledData'
 
 const header = ReactDOM.createRoot(document.getElementById('header'))
@@ -22,10 +23,17 @@ beeswarm.render(
   </>
 )
 
-const sectionBreak = ReactDOM.createRoot(document.getElementById('section-break'))
-sectionBreak.render(
+const sectionBreak1 = ReactDOM.createRoot(document.getElementById('section-break-1'))
+sectionBreak1.render(
   <>
     <SectionBreak />
+  </>
+)
+
+const scrollSingles = ReactDOM.createRoot(document.getElementById('scrollySingles'))
+scrollSingles.render(
+  <>
+    <ScrollySingles />
   </>
 )
 
@@ -39,7 +47,14 @@ prefilledGrid.render(
         122, 131, 114, 100, 119, 109, 121, 109, 112, 102, 103, 105, 115,
         104,  99, 119, 120, 109, 107, 115, 115, 105,  98, 121, 102, 115,
         128, 103,  90, 109, 115,  98,  96, 107, 104, 104, 107, 102,  99,
-        111,  94,  95]' length={247}/>
+        111,  94,  95]' />
+  </>
+)
+
+const sectionBreak2 = ReactDOM.createRoot(document.getElementById('section-break-2'))
+sectionBreak2.render(
+  <>
+    <SectionBreak />
   </>
 )
 

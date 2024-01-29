@@ -1,0 +1,49 @@
+.entireScrolly  {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* gap: 1rem; */
+    margin: 5vh 0 0 0;
+    padding-top: 2rem;
+    border: 2px dashed skyblue;
+}
+
+figure {
+    display: flex;
+    flex-basis: 46%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+article {
+    flex-basis: 54%;
+}
+
+.scrollyCard   {
+    background-color: white;
+    opacity: 0.8;
+    margin-bottom: 75%;
+    margin-top: 40%;
+    z-index: 1;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    figure  {
+        display: block;
+        position: sticky;
+        flex-basis: 100%;
+    }
+
+    article {
+        position: relative;
+        flex-basis: 85%;
+    }
+}
