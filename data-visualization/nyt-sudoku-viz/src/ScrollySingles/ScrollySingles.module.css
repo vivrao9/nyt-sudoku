@@ -5,12 +5,11 @@
     /* gap: 1rem; */
     margin: 5vh 0 0 0;
     padding-top: 2rem;
-    border: 2px dashed skyblue;
 }
 
 figure {
     display: flex;
-    flex-basis: 46%;
+    flex-basis: 54%;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -23,12 +22,13 @@ figure {
 }
 
 article {
-    flex-basis: 54%;
+    flex-basis: 46%;
 }
 
 .scrollyCard   {
-    background-color: white;
-    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--default-text);
+    opacity: 1;
     margin-bottom: 75%;
     margin-top: 40%;
     z-index: 1;
@@ -37,8 +37,7 @@ article {
 
 @media screen and (max-width: 768px) {
     figure  {
-        display: block;
-        position: sticky;
+        /* display: block; */
         flex-basis: 100%;
     }
 

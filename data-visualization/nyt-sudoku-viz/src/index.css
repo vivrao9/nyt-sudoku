@@ -37,6 +37,7 @@
   --black: #000000;
   --white: #FFFFFF;
   --light_gray_: #D9D9D9;
+  --default-text: #333333;
 }
 
 p a {
@@ -131,31 +132,55 @@ code {
   margin-bottom: 2rem;
 }
 
-div.toggles  {
+.radio-toggles {
+  position: relative;
   display: flex;
-  margin: 0;
-  justify-content: flex-end;
-  width: 100%;
-  margin-bottom: 1rem;
+  align-items: center;
+  background: var(--lemon_-2);
+  border: 1px solid lightgrey;
+  border-radius: 9999px;
+  justify-content: right;
+  margin: 20px auto;
+  width: auto;
+  max-width: 55%;
+  overflow: hidden;
+  padding: 2px;
 }
 
-div.toggles > input:first-of-type {
-  border-radius: 4px 0 0 4px;
+input[type="radio"] {
+  /* left: -9999px;
+  position: absolute;
+  z-index: -1; */
+  display: none;
 }
 
-div.toggles > input:last-of-type {
-  border-radius: 0 4px 4px 0;
+.slide-item {
+  background-color: #FFDA00;
+  border-radius: 9999px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  height: calc(100% - 8px);
+  left: calc(33.33% + 4px);
+  position: absolute;
+  width: calc(33.33% - 8px);
+  transition: left .4s;
+  z-index: 0;
 }
 
-div.toggles > input {
-  background-color: var(--lemon_-2);
-  font-family: "Inter", sans-serif;
-  color: #151515;
-  margin: 0;
+input[type="radio"]:nth-of-type(2):checked ~ .slide-item {
+  left: 4px;
+}
+input[type="radio"]:nth-of-type(3):checked ~ .slide-item {
+  left: calc(66.66% + 4px);
 }
 
-div.toggles > input[aria-pressed="true"]  {
-  background-color: var(--lemon_);
+label {
+  cursor: pointer;
+  padding: 0px 20px;
+  margin: 2px;
+  text-align: center;
+  vertical-align: middle;
+  width: auto;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
