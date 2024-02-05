@@ -14,15 +14,13 @@ import {
   mean,
   max,
   csv,
-  csvParse,
   scaleLinear,
   select,
   axisBottom,
   forceCollide,
   forceSimulation,
   forceX,
-  forceY,
-  gray
+  forceY
 } from 'd3'
 
 // import {fs} from 'fs';
@@ -47,9 +45,7 @@ const circleRadius = 5
 // with help from https://observablehq.com/@maritrinez/d3-brushable-timeline-beeswarm
 function Beeswarm () {
   const [timesData, setTimesData] = useState(null)
-  const chartRef = useRef(null)
-
-  // const interim_data = csvParse(fs.readFileSync("../data/gsheets_times.csv"));
+  const chartRef = useRef()
 
   useEffect(() => {
 

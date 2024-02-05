@@ -1,9 +1,10 @@
 import styles from './Grid.module.css'
 import '../index.css'
 import { range } from '../utils.js'
-import { scaleQuantize, scaleDiverging, extent, select, color } from 'd3'
+import { scaleQuantize, scaleDiverging, extent, select, color, legendColor, format } from 'd3'
 import { useEffect, useState, useRef } from 'react'
 import { useHover } from '@uidotdev/usehooks'
+import legend from 'd3-svg-legend'
 
 // =======================================================================
 // start with Cell component
@@ -29,7 +30,7 @@ function Cell({ index, cellColor, cellValue, colors }) {
                 >
                     <p style={{display: hovering ? 'flex' : 'none',
                                margin: 'auto'}}>
-                        {Math.round(cellValue * 10) / 10}
+                        {cellValue}
                     </p>
             </div>
 }
@@ -37,11 +38,6 @@ function Cell({ index, cellColor, cellValue, colors }) {
 // ======================================================================================
 // create Grid component
 function Grid({ colorData, colorDiverging=false, colors, text=null, hatchData=null }) {
-  console.log(colorData)
-  console.log(colors)
-
-    // convert string of list to list
-    // heatmap = JSON.parse(heatmap)
 
     // create a D3 scales from min to max of the values
     // in the heatmap array argument
@@ -55,9 +51,8 @@ function Grid({ colorData, colorDiverging=false, colors, text=null, hatchData=nu
                         .range(colors)                
     }
 
-    // console.log(heatmap_scale(heatmap))
-
     return (
+        <>
         <div className={styles.doks_grid}>
             {range(81).map((item, index) => {
                 return <Cell key={index}
@@ -68,6 +63,7 @@ function Grid({ colorData, colorDiverging=false, colors, text=null, hatchData=nu
                         colors={colors} />
 })}
         </div>
+        </>
     )
 }
 
