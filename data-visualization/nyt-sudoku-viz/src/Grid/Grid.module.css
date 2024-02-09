@@ -73,3 +73,11 @@
 .grid__cell:nth-child(n + 73):nth-child(-n + 81)  {
     border-bottom: 2px solid black;
 }
+
+.gridViz    {
+    display:contents;
+}
+
+.gridViz > svg {
+    height: 50px;
+}

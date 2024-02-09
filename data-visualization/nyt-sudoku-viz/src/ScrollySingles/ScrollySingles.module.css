@@ -9,7 +9,7 @@
 
 figure {
     display: flex;
-    flex-basis: 54%;
+    flex-basis: 60%;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -22,7 +22,7 @@ figure {
 }
 
 article {
-    flex-basis: 46%;
+    flex-basis: 40%;
 }
 
 .scrollyCard   {

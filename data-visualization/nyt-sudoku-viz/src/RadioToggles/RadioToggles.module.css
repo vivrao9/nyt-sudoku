@@ -1,49 +1,34 @@
 .radioToggles {
   position: relative;
   display: flex;
-  align-items: center;
   background: var(--lemon_-2);
+  color: var(--lemon_2);
   border: 1px solid lightgrey;
-  border-radius: 9999px;
   justify-content: right;
   margin: 20px auto;
-  width: auto;
-  max-width: 55%;
+  width: fit-content;
   overflow: hidden;
-  padding: 2px;
 }
 
 input[type="radio"] {
-  left: -9999px;
-  position: absolute;
-  z-index: -1;
-  /* display: none; */
+  display: none;
 }
 
-.slideItem {
-  background: var(--lemon_-2);
-  border-radius: 9999px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  height: calc(100% - 8px);
-  left: calc(4px);
-  position: absolute;
-  width: calc(33.33% - 8px);
-  transition: left .4s;
-  z-index: 0;
-}
-
-input[type="radio"]:nth-of-type(2):checked ~ .slideItem {
-  left: calc(33.33% + 4px);
-}
-input[type="radio"]:nth-of-type(3):checked ~ .slideItem {
-  left: calc(66.66% + 4px);
+input[type="radio"]:checked + label {
+  color: var(--lemon_-2);
+  background-color: var(--lemon_2);
+  font-weight: bold;
 }
 
 label {
   cursor: pointer;
-  padding: 0px 20px;
-  margin: 2px;
+  padding: 5px 20px;
+  margin: 0px;
   text-align: center;
   width: auto;
-  z-index: 2;
+  /* z-index: 2; */
+}
+
+figure  {
+  width: 80%;
 }

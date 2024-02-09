@@ -8,7 +8,6 @@ import Grid from './Grid/Grid'
 import SectionBreak from './SectionBreak/SectionBreak.js'
 import ScrollySingles from './ScrollySingles/ScrollySingles.js'
 import RadioToggles from './RadioToggles/RadioToggles.js'
-// import GetPrefilledData from './GetPrefilledData/GetPrefilledData'
 
 const header = ReactDOM.createRoot(document.getElementById('header'))
 header.render(

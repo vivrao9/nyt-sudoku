@@ -98,7 +98,6 @@ const ScrollamaDemo = () => {
   // data prop of the step, which in this demo stores the index of the step.
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data)
-    console.log(data)
   }
 
   return (

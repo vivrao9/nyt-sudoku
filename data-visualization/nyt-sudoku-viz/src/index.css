@@ -40,6 +40,16 @@
   --default-text: #333333;
 }
 
+::moz-selection {
+  color: var(--default-text);
+  background: var(--lemon_);
+}
+
+::selection {
+  color: var(--default-text);
+  background: var(--lemon_);
+}
+
 p a {
   border-bottom: 2px solid black;
   color: black;
