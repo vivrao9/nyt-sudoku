@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 import Grid from '../Grid/Grid';
 import styles from './ScrollySingles.module.css'
-import { range } from '../utils';
+import { range } from '../../utils';
 
 const scrollyData = {
   0:  {

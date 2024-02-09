@@ -1,15 +1,10 @@
 import styles from './Grid.module.css'
-import '../index.css'
-import { range } from '../utils.js'
-import { scaleQuantile, scaleQuantize, scaleDiverging, extent, select, color, format } from 'd3'
-import { useEffect, useState, useRef } from 'react'
+import '../../index.css'
+import { range } from  '../../utils'
+import { scaleQuantile, extent, select, format } from 'd3'
+import { useRef } from 'react'
 import { useHover } from '@uidotdev/usehooks'
 import { legendColor } from 'd3-svg-legend'
-
-import Legend from '../Legend/Legend.js'
-// import Legend function from Observable
-import { Runtime } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-import d3_colorLegend from "https://api.observablehq.com/@d3/color-legend.js?v=3";
 
 // =======================================================================
 // start with Cell component
@@ -19,7 +14,7 @@ function Cell({ index, cellColor, cellValue, colors }) {
     const [ref, hovering] = useHover()
 
     // create state to track what cell is currently being hovered on
-    const [ hoveredOnCell, setHoveredOnCell ] = useState(null)
+    // const [ hoveredOnCell, setHoveredOnCell ] = useState(null)
 
     // set cell style
     const cellStyle = { backgroundColor: cellColor || 'none',

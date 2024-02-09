@@ -2,12 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 // import App from './App'
-import Header from './Header/Header.js'
-import Beeswarm from './Beeswarm/Beeswarm'
-import Grid from './Grid/Grid'
-import SectionBreak from './SectionBreak/SectionBreak.js'
-import ScrollySingles from './ScrollySingles/ScrollySingles.js'
-import RadioToggles from './RadioToggles/RadioToggles.js'
+import Header from './components/Header/Header.js' // './components/Header/Header.js'
+import Beeswarm from './components/Beeswarm/Beeswarm'
+import SectionBreak from './components/SectionBreak/SectionBreak.js'
+import ScrollySingles from './components/ScrollySingles/ScrollySingles.js'
+import RadioToggles from './components/RadioToggles/RadioToggles.js'
 
 const header = ReactDOM.createRoot(document.getElementById('header'))
 header.render(

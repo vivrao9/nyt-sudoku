@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SectionBreak.module.css'
-import { range } from '../utils';
+import { range } from '../../utils';
 
 function SectionBreak() {
   return (

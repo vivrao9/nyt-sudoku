@@ -29,7 +29,7 @@ import {
 import { duration } from 'moment' // https://momentjs.com/docs/#/durations/
 
 // import range
-import { range } from '../utils'
+import { range } from '../../utils'
 
 // declare variables at the top
 const timesUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoqnPWcu7Vi2cUAIcH78PFITa-gaVWhQVeEpM4X0Nc4Nd0fHZk98xb221AL3byyU-qAiO4UcZmGrMl/pub?gid=0&single=true&output=csv'
