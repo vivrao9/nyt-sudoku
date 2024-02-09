@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/nyt-sudoku/static/css/main.f2470cd8.css",
-    "main.js": "/nyt-sudoku/static/js/main.eab06f77.js",
+    "main.css": "/nyt-sudoku/static/css/main.15834c1c.css",
+    "main.js": "/nyt-sudoku/static/js/main.bd6f5655.js",
     "index.html": "/nyt-sudoku/index.html",
-    "main.f2470cd8.css.map": "/nyt-sudoku/static/css/main.f2470cd8.css.map",
-    "main.eab06f77.js.map": "/nyt-sudoku/static/js/main.eab06f77.js.map"
+    "main.15834c1c.css.map": "/nyt-sudoku/static/css/main.15834c1c.css.map",
+    "main.bd6f5655.js.map": "/nyt-sudoku/static/js/main.bd6f5655.js.map"
   },
   "entrypoints": [
-    "static/css/main.f2470cd8.css",
-    "static/js/main.eab06f77.js"
+    "static/css/main.15834c1c.css",
+    "static/js/main.bd6f5655.js"
   ]
 }
