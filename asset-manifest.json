@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nyt-sudoku/static/css/main.f2470cd8.css",
+    "main.js": "/nyt-sudoku/static/js/main.eab06f77.js",
+    "index.html": "/nyt-sudoku/index.html",
+    "main.f2470cd8.css.map": "/nyt-sudoku/static/css/main.f2470cd8.css.map",
+    "main.eab06f77.js.map": "/nyt-sudoku/static/js/main.eab06f77.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2470cd8.css",
+    "static/js/main.eab06f77.js"
+  ]
+}
