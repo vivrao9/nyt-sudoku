@@ -2,13 +2,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    /* gap: 1rem; */
     margin: 5vh 0 0 0;
     padding-top: 2rem;
 }
 
 figure {
-    display: flex;
+    display: block;
     flex-basis: 60%;
     position: -webkit-sticky;
     position: sticky;

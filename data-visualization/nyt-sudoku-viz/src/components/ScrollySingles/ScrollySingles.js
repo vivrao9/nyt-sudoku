@@ -30,7 +30,7 @@ const scrollyData = {
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     colorDiverging: false,
-    colors: ['#FFF3B0', '#FFEB75', '#D3D3D3', '#B206C4', '#8A0497'],
+    colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
     text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid."
   },
 
@@ -45,7 +45,7 @@ const scrollyData = {
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     colorDiverging: false,
-    colors: ['#FFF3B0', '#FFEB75', '#D3D3D3', '#B206C4', '#8A0497'],
+    colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
     text: "This could also mean I’m caught up talking to other naked singles before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell."
   },
 
@@ -75,20 +75,6 @@ const scrollyData = {
     colors: ['#c7eae5', '#f5f5f5', '#f6e8c3', '#dfc27d', '#bf812d', '#8c510a'],
     text: "Let's rank all the cells and focus on the ones where I spend more time.<br><br>You can see that I spend longer toward the middle and bottom of the grid."
   },
-
-  // 5:  {
-  //   colorData: [-1.09, -0.35,  0.37, -0.77, -0.07, -0.59, -1.06, -0.91, -0.55,
-  //     -0.17,  0.69,  0.2 , -0.9 , -0.96, -0.7 , -0.94,  0.57, -0.23,
-  //     -1.02,  0.15, -0.13,  0.27, -0.31, -0.33,  0.42,  0.08,  0.46,
-  //      0.52, -0.49, -0.49,  0.87,  0.58, -1.27, -0.47, -0.56,  2.6 ,
-  //     -0.47,  0.85,  0.38,  5.41,  1.1 ,  0.86, -1.12, -0.2 ,  0.08,
-  //      1.09,  1.  , -0.08,  0.64,  0.15,  0.77, -0.71,  0.17, -0.4 ,
-  //     -0.66, -0.93,  0.41,  0.32,  0.31, -0.62, -0.35, -0.21,  1.41,
-  //      0.38,  0.14,  0.35,  0.81,  0.59, -0.73, -0.4 , -0.34, -0.64,
-  //     -0.17,  0.24, -0.04,  0.75,  0.26,  0.99,  0.65, -0.29, -0.09],
-  //   colors: ['#A5E1F8', '#7ED2F2', '#D3D3D3', '#C56800', '#854B0A'],
-  //   text: "Now let's overlay this with data on steps."
-  // },
 }
 
 const ScrollamaDemo = () => {

@@ -5,7 +5,8 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
-    margin: auto auto 2rem auto;
+    margin-bottom: 2rem;
+    justify-content: left;
     /* flex-wrap: wrap;
     flex-direction: row;
     align-content: flex-start; */
@@ -75,7 +76,7 @@
 }
 
 .gridViz    {
-    display:contents;
+    display: contents;
 }
 
 .gridViz > svg {

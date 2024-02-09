@@ -5,7 +5,7 @@
   color: var(--lemon_2);
   border: 1px solid lightgrey;
   justify-content: right;
-  margin: 20px auto;
+  margin: 20px 0px;
   width: fit-content;
   overflow: hidden;
 }
