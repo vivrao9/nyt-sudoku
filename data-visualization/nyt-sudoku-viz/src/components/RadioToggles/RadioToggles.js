@@ -43,7 +43,7 @@ function RadioToggles() {
         <label htmlFor="hard">Hard</label>
       </div>
       
-      <Grid colorData={prefilledData} colors={['#FFF3B0', '#FFEB75', '#FFDA00', '#C5A900']} />
+      <Grid colorData={prefilledData} colors={['#FFF3B0', '#FFEB75', '#FFDA00', '#C5A900']} legendLabelLeft={"% of grids where this cell was prefilled →"}/>
     </>
   )
 }

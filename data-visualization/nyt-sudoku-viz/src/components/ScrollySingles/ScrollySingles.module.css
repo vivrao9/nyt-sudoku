@@ -44,4 +44,9 @@ article {
         position: relative;
         flex-basis: 85%;
     }
+
+    .entireScrolly  {
+        display: flex;
+        flex-direction: column;
+    }
 }

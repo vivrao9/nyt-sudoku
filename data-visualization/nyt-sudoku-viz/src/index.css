@@ -121,7 +121,8 @@ code {
 .hedline  {
   text-align: center;
   padding: 10px;
-  margin-bottom: 2rem;  
+  margin-bottom: 2rem;
+  orphans: 2;
 }
 
 .hedline a  {
@@ -140,6 +141,16 @@ code {
 
 #beeswarm {
   margin-bottom: 2rem;
+}
+
+.oldDoks  {
+  position: fixed;
+}
+
+@media (max-width: 768px) {
+  .oldDoks  {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {

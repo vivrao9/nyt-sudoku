@@ -16,7 +16,8 @@ const scrollyData = {
       9.87,  9.42, 17.94, 10.17, 15.  ,  6.38, 11.43, 12.34, 15.83,
       9.4 , 14.3 , 10.14, 12.39, 17.71, 14.93, 14.52,  9.69,  9.7 ],
     colors: ['#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
-    text: "Once a cell becomes a naked single, on average, it takes me 11.79 steps to fill it out.<br><br>But not all cells are created equally."
+    text: "Once a cell becomes a naked single, on average, it takes me 11.79 steps to fill it out.<br><br>But not all cells are created equally.",
+    legendLabelLeft: "Is a naked single for longer →"
   },
 
   1:  {
@@ -31,7 +32,9 @@ const scrollyData = {
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     colorDiverging: false,
     colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
-    text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid."
+    text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid.",
+    legendLabelLeft: "← Naked for fewer steps",
+    legendLabelRight: "Naked for more steps →"
   },
 
   2:  {
@@ -46,7 +49,9 @@ const scrollyData = {
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     colorDiverging: false,
     colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
-    text: "This could also mean I’m caught up talking to other naked singles before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell."
+    text: "This could also mean I’m caught up solving other naked singles before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
+    legendLabelLeft: "← Naked for fewer steps",
+    legendLabelRight: "Naked for more steps →"
   },
 
   3:  {
@@ -59,7 +64,8 @@ const scrollyData = {
       5.33, 5.11, 3.79, 4.12, 4.18, 3.88, 4.35, 4.76, 4.48, 5.27, 4.78,
       5.51, 5.17, 4.23, 4.43],
     colors: ['#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'],
-    text: "On average, I spend about four and a half seconds before I fill out a cell.<br><br>But again, not all cells are created equally."
+    text: "On average, I spend about four and a half seconds before I fill out a cell.<br><br>But again, not all cells are created equally.",
+    legendLabelLeft: "More seconds before solving →"
   },
 
   4:  {
@@ -73,7 +79,10 @@ const scrollyData = {
        0.38,  0.14,  0.35,  0.81,  0.59, -0.73, -0.4 , -0.34, -0.64,
       -0.17,  0.24, -0.04,  0.75,  0.26,  0.99,  0.65, -0.29, -0.09],
     colors: ['#c7eae5', '#f5f5f5', '#f6e8c3', '#dfc27d', '#bf812d', '#8c510a'],
-    text: "Let's rank all the cells and focus on the ones where I spend more time.<br><br>You can see that I spend longer toward the middle and bottom of the grid."
+    text: "Let's rank all the cells and focus on the ones where I spend more time.<br><br>You can see that I spend longer toward the middle and bottom of the grid.",
+    legendLabelLeft: "← Less time",
+    legendLabelRight: "More time →"
+    
   },
 }
 

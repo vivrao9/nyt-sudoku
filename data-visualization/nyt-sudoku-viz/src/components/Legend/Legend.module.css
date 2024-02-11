@@ -1,17 +1,32 @@
 .legend {
     width: 60%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
     margin-bottom: 12px;
+}
+
+.legendInstructions   {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--default-text);
+    margin-bottom: -12px;
+}
+
+.legendBlocks   {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 .legendItem  {
     display: block;
     margin-top: 18px;
     margin-right: 0px;
-    width: auto;
+    width: 100%;
     min-width: 48px;
 }
 
@@ -26,4 +41,18 @@
     font-size: 0.85rem;
     text-align: right;
     transform: translate(12px);
+}
+
+.legendLabelLeft   {
+    float: left;
+    text-align: left;
+    min-width: 50%;
+    flex: 1;
+}
+
+.legendLabelRight   {
+    float: right;
+    text-align: right;
+    min-width: 0%;
+    max-width: 50%;
 }
