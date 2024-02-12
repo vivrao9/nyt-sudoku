@@ -62,7 +62,7 @@ function Grid({ colorData, colors, legendLabelLeft=null, legendLabelRight=null }
 
     return (
         <div>
-        <Legend scale={heatmap_scale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight}/>
+        <Legend scale={heatmap_scale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} />
             <div className={styles.doks_grid}>
                 {range(81).map((item, index) => {
                     return <Cell key={index}

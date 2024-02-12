@@ -8,7 +8,7 @@ function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null}
   const outputQuantiles = Object.values(scale.quantiles())
 
   return (
-    <div className={styles.legend}>
+    <div className={styles.legend} key={crypto.randomUUID()}>
       <div className={styles.legendInstructions}>
         <div className={styles.legendLabelLeft}>{legendLabelLeft}</div>
         <div className={styles.legendLabelRight}>{legendLabelRight}</div>
@@ -16,9 +16,15 @@ function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null}
       <div className={styles.legendBlocks}>
         {outputColors.map((item, index) => {
           return <>
-          <div className={styles.legendItem}>
-            <div className={styles.legendColor} style={{'background-color': item}}/>
-            <div className={styles.legendLabel}>{isNaN(outputQuantiles[index]) ? '' : (Math.round(outputQuantiles[index] * 100) / 100).toFixed(1)}</div>
+          <div className={styles.legendItem} key={crypto.randomUUID()}>
+            <div
+            className={styles.legendColor}
+            style={{'backgroundColor': item}}
+            key={crypto.randomUUID()} />
+            <div
+            className={styles.legendLabel}
+            key={crypto.randomUUID()}>
+              {isNaN(outputQuantiles[index]) ? '' : (Math.round(outputQuantiles[index] * 100) / 100).toFixed(1)}</div>
           </div>
           </>
         })}

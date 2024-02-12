@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 // import App from './App'
 import Header from './components/Header/Header.js' // './components/Header/Header.js'
-import Beeswarm from './components/Beeswarm/Beeswarm'
+import Histogram from './components/Histogram/Histogram.js'
 import SectionBreak from './components/SectionBreak/SectionBreak.js'
 import ScrollySingles from './components/ScrollySingles/ScrollySingles.js'
 import RadioToggles from './components/RadioToggles/RadioToggles.js'
@@ -15,10 +15,10 @@ header.render(
   </>
 )
 
-const beeswarm = ReactDOM.createRoot(document.getElementById('beeswarm'))
-beeswarm.render(
+const histogram = ReactDOM.createRoot(document.getElementById('histogram'))
+histogram.render(
   <>
-    <Beeswarm />
+    <Histogram />
   </>
 )
 

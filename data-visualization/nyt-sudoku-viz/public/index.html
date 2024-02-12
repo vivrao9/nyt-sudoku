@@ -88,7 +88,7 @@
 
       <div class="row d-flex justify-content-center">
         <div class="col-md-8">
-          <div id="beeswarm" alt="This space contains a beeswarm chart where each dot represents one completed sudoku. The dots are arranged in order of how long I took to complete that sudoku."></div>
+          <div id="histogram" alt="This space contains a histogram chart where each square represents one completed sudoku. The dots are arranged in order of how long I took to complete that sudoku."></div>
         </div>
       </div>
 
@@ -104,9 +104,9 @@
           <p class="caption" style="margin: -1rem 0 2rem;">Data above is from xxx Times sudokus. Hover over each cell above to see how often it came prefilled.</p>
 
           <h4>Let's start with my strategy</h4>
-          <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can only be one possible value</b>. (They’re also called sole candidates, but why would you call them that when you could say naked singles? I digress.)</p>
+          <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can be only one possible value</b>. They're the slam dunks. No-brainers. Easy pickings. (They’re also called sole candidates, but why would you call them that when you could say naked singles? I digress.)</p>
 
-          <img src="assets/slice_dice.jpg" alt="A screenshot of a sudoku grid with one cell highlighted" />
+          <img src="assets/slice_dice.jpg" alt="A screenshot of a sudoku grid with one cell highlighted. By process of elimination, only the number 8 can go in that cell." />
           <p class="caption">In the NYTimes grid above, only the number 8 can be played in the highlighted cell.</p>
 
           <p>Using the process of elimination, I identify naked singles and solve those cells. I only ever fill in a value when it’s a naked single, i.e., I never guess. So when I fill out the grid, I almost never redo cells once I fill them. This is a tradition I’ve digitized — high school me would fill out grids with a pen.</p>

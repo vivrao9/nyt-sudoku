@@ -98,7 +98,7 @@ const ScrollamaDemo = () => {
   return (
     <div className={styles.entireScrolly}>
       <figure>
-        <Grid {...scrollyData[currentStepIndex]} />
+        <Grid {...scrollyData[currentStepIndex]}/>
       </figure>
 
       <article>
