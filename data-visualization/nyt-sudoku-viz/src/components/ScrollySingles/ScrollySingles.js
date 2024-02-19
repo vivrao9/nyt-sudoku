@@ -15,7 +15,7 @@ const scrollyData = {
      13.84, 12.68, 15.88, 10.65, 15.58, 13.14, 10.57, 10.14, 11.81,
       9.87,  9.42, 17.94, 10.17, 15.  ,  6.38, 11.43, 12.34, 15.83,
       9.4 , 14.3 , 10.14, 12.39, 17.71, 14.93, 14.52,  9.69,  9.7 ],
-    colors: ['#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
+    colors: ['#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4'],
     text: "Once a cell becomes a naked single, on average, it takes me 11.79 steps to fill it out.<br><br>But not all cells are created equally.",
     legendLabelLeft: "Is a naked single for longer →"
   },
@@ -63,7 +63,7 @@ const scrollyData = {
       3.59, 4.93, 4.84, 4.83, 3.9 , 4.17, 4.31, 5.93, 4.9 , 4.66, 4.87,
       5.33, 5.11, 3.79, 4.12, 4.18, 3.88, 4.35, 4.76, 4.48, 5.27, 4.78,
       5.51, 5.17, 4.23, 4.43],
-    colors: ['#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'],
+    colors: ['#FBC990', '#FFAA4C', '#FA8400', '#C56800'],
     text: "On average, I spend about four and a half seconds before I fill out a cell.<br><br>But again, not all cells are created equally.",
     legendLabelLeft: "More seconds before solving →"
   },
@@ -102,7 +102,7 @@ const ScrollamaDemo = () => {
       </figure>
 
       <article>
-        <Scrollama offset={0.5} onStepEnter={onStepEnter}>
+        <Scrollama offset={0.3} onStepEnter={onStepEnter}>
           {range(Object.keys(scrollyData).length).map((item, index) => {
             return <Step data={index} key={index}><div className={styles.scrollyCard}><p dangerouslySetInnerHTML={{ __html: scrollyData[index]['text'] }}></p></div></Step>
           })}

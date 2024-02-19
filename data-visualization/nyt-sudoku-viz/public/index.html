@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="A data-driven essay exploring my love for the sudoku, how I fill out
-      the grid and whether there are any patterns in the way I fill it out."
+      content="A data-driven essay on my love for the sudoku and exploring patterns in how I fill out
+      the puzzle."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-          <img src="/assets/old_doks_1.jpeg" class="oldDoks" style="left: -150px; top: 425px;" />
+          <img src="assets/old_doks_1.jpg" class="oldDoks" style="left: -350px; top: 150px;" alt="A scanned copy of an incomplete sudoku from 2017. The sudoku was torn from my newspaper." />
 
           <p>I’ve always loved doing the sudoku.</p>
 
@@ -82,18 +82,8 @@
 
           <p>We even started a spreadsheet to track our times. Our competitive natures pushed us to challenge each other almost daily. Like in high school, I was constantly thinking about how to get faster.</p>
 
-          <span style="color: red;">Replace with histogram? You should see a beeswarm below (but I'm having difficulties with getting it to render)</span>
-        </div>
-      </div>
-
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-8">
           <div id="histogram" alt="This space contains a histogram chart where each square represents one completed sudoku. The dots are arranged in order of how long I took to complete that sudoku."></div>
-        </div>
-      </div>
-
-      <div class="row d-flex justify-content-center" style="margin-top: 1rem;">
-        <div class="col-md-6">
+        
           <p>Then, in January 2023, I made a breakthrough. I started tracking what grids I fill out and how I fill them out. And in the weeks since, I started to analyze my performance to look for patterns and ways I could speed up. As a throwback to my high school self, I decided to analyze 100 sudokus to see what I could learn. This essay has a few insights I’ve found.</p>
           
           <h4>Patterns</h4>
@@ -105,6 +95,8 @@
 
           <h4>Let's start with my strategy</h4>
           <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can be only one possible value</b>. They're the slam dunks. No-brainers. Easy pickings. (They’re also called sole candidates, but why would you call them that when you could say naked singles? I digress.)</p>
+
+          <img src="assets/old_doks_2.jpg" class="oldDoks" style="right: -350px; top: 1800px;" alt="A scanned copy of an incomplete sudoku from 2017. The sudoku was torn from my newspaper." />
 
           <img src="assets/slice_dice.jpg" alt="A screenshot of a sudoku grid with one cell highlighted. By process of elimination, only the number 8 can go in that cell." />
           <p class="caption">In the NYTimes grid above, only the number 8 can be played in the highlighted cell.</p>
