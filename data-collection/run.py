@@ -5,7 +5,7 @@ from sqlalchemy.types import Integer, String
 
 web = requests.get("https://www.nytimes.com/puzzles/sudoku/easy")
 soup = BeautifulSoup(web.text, 'html.parser')
-data  = soup.find_all("script")[1].string
+data  = soup.find_all("script")[2].string
 data = data[(data.index('= ')+2):]
 
 # convert to json
