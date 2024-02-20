@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
-User-agent: *
+User-agent: Google
 Disallow:
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
