@@ -5,7 +5,15 @@ import styles from '../Legend/Legend.module.css'
 function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null}) {
 
   const outputColors = Object.values(scale.range())
-  const outputQuantiles = Object.values(scale.quantiles())
+  
+  let outputQuantiles
+    try {
+    outputQuantiles = Object.values(scale.quantiles())
+  } catch(err) {
+    outputQuantiles = Object.values(scale.domain())
+  }
+
+  console.log(outputQuantiles)
 
   return (
     <div className={styles.legend} key={crypto.randomUUID()}>

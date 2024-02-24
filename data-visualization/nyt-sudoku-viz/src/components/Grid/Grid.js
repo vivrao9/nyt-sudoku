@@ -1,7 +1,7 @@
 import styles from './Grid.module.css'
 import '../../index.css'
 import { range } from  '../../utils'
-import { scaleQuantile, extent, select, format } from 'd3'
+import { scaleQuantile, extent, scaleThreshold } from 'd3'
 import { useRef } from 'react'
 import { useHover } from '@uidotdev/usehooks'
 import { legendColor } from 'd3-svg-legend'
@@ -39,26 +39,27 @@ function Cell({ index, cellColor, cellValue, colors }) {
 
 // ======================================================================================
 // create Grid component
-function Grid({ colorData, colors, legendLabelLeft=null, legendLabelRight=null }) {
+function Grid({ colorData, colors, thresholds=[], legendLabelLeft=null, legendLabelRight=null }) {
 
     // create ref for each chart
     const legendRef = useRef(null)
 
     // create a D3 scales from min to max of the values
     // in the heatmap array argument
-    const heatmap_scale = scaleQuantile()
-    .domain(extent(colorData))
-    .range(colors)
+    // const heatmap_scale = scaleQuantile()
+    // .domain(extent(colorData))
+    // .range(colors)
 
-    // if (colorDiverging === true) {
-    //   var heatmap_scale = scaleDiverging()
-    //                     .domain(extent(colorData))
-    //                     .range(colors)
-    // } else {
-    //   var heatmap_scale = scaleQuantile()
-    //                     .domain(extent(colorData))
-    //                     .range(colors)
-    // }
+    let heatmap_scale
+    if (thresholds.length === 0) {
+      heatmap_scale = scaleQuantile()
+            .domain(extent(colorData))
+            .range(colors)
+    } else {
+      heatmap_scale = scaleThreshold()
+            .domain(thresholds)
+            .range(colors)
+    }
 
     return (
         <div>

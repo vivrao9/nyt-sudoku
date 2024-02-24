@@ -16,7 +16,7 @@ const scrollyData = {
       9.87,  9.42, 17.94, 10.17, 15.  ,  6.38, 11.43, 12.34, 15.83,
       9.4 , 14.3 , 10.14, 12.39, 17.71, 14.93, 14.52,  9.69,  9.7 ],
     colors: ['#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4'],
-    text: "Once a cell becomes a naked single, on average, it takes me 11.79 steps to fill it out.<br><br>But not all cells are created equally.",
+    text: "Once a cell becomes a naked single, I fill it out after solving 12 other cells, on average.<br><br>But not all cells are created equally. Let's look at all the cells where I spent <i>longer than average</i>.",
     legendLabelLeft: "Is a naked single for longer →"
   },
 
@@ -30,11 +30,11 @@ const scrollyData = {
        2.04,  0.88,  4.08, -1.15,  3.78,  1.34, -1.23, -1.66,  0.01,
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
-    colorDiverging: false,
-    colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
+    thresholds: [0, 1, 2, 3, 4],
+    colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
     text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid.",
-    legendLabelLeft: "← Naked for fewer steps",
-    legendLabelRight: "Naked for more steps →"
+    legendLabelLeft: "← Fewer steps than avg",
+    legendLabelRight: "More steps than avg →"
   },
 
   2:  {
@@ -47,11 +47,11 @@ const scrollyData = {
        2.04,  0.88,  4.08, -1.15,  3.78,  1.34, -1.23, -1.66,  0.01,
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
-    colorDiverging: false,
-    colors: ['#FFEB75', '#FFF3B0', '#F5F5F5', '#D3D3D3', '#B206C4', '#8A0497'],
-    text: "This could also mean I’m caught up solving other naked singles before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
-    legendLabelLeft: "← Naked for fewer steps",
-    legendLabelRight: "Naked for more steps →"
+    thresholds: [0, 1, 2, 3, 4],
+    colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
+    text: "But this could also mean I notice them, but solve other cells before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
+    legendLabelLeft: "← Fewer steps than avg",
+    legendLabelRight: "More steps than avg →"
   },
 
   3:  {
@@ -64,7 +64,7 @@ const scrollyData = {
       5.33, 5.11, 3.79, 4.12, 4.18, 3.88, 4.35, 4.76, 4.48, 5.27, 4.78,
       5.51, 5.17, 4.23, 4.43],
     colors: ['#FBC990', '#FFAA4C', '#FA8400', '#C56800'],
-    text: "On average, I spend about four and a half seconds before I fill out a cell.<br><br>But again, not all cells are created equally.",
+    text: "On average, I spend about four and a half seconds before I fill out a cell.<br><br>But again, not all cells are created equally. Let's look at the ones where I spend <i>more time than average</i>.",
     legendLabelLeft: "More seconds before solving →"
   },
 
@@ -78,10 +78,11 @@ const scrollyData = {
       -0.66, -0.93,  0.41,  0.32,  0.31, -0.62, -0.35, -0.21,  1.41,
        0.38,  0.14,  0.35,  0.81,  0.59, -0.73, -0.4 , -0.34, -0.64,
       -0.17,  0.24, -0.04,  0.75,  0.26,  0.99,  0.65, -0.29, -0.09],
-    colors: ['#c7eae5', '#f5f5f5', '#f6e8c3', '#dfc27d', '#bf812d', '#8c510a'],
-    text: "Let's rank all the cells and focus on the ones where I spend more time.<br><br>You can see that I spend longer toward the middle and bottom of the grid.",
-    legendLabelLeft: "← Less time",
-    legendLabelRight: "More time →"
+    thresholds: [0, 0.5, 1.0, 1.5, 2.0],
+    colors: ['#D9D9D9', '#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'],
+    text: "You can see that I spend longer toward the middle and bottom of the grid.",
+    legendLabelLeft: "← Fewer seconds than avg",
+    legendLabelRight: "More seconds than avg →"
     
   },
 }
