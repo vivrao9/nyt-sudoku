@@ -89,7 +89,7 @@ function Histogram() {
   .attr("y", (d, i) => -(i * (boxSize + padding))) // negative value makes it start from the bottom
   .attr("width", boxSize)
   .attr('height', boxSize)
-  .attr("fill", "#FFAA4C") //d => col(d))
+  .attr("fill", "#FB9B00") //d => col(d))
   
   // create different scale for time-specific components
   const timeScale = scaleLinear()
@@ -101,7 +101,7 @@ function Histogram() {
   // define x-axis
   const gx = axisBottom(timeScale)
   .tickValues([duration(1, 'minutes'), duration(2, 'minutes'), duration(3, 'minutes'), duration(1, 'minutes'), duration(4, 'minutes'), duration(5, 'minutes'), duration(6, 'minutes'), duration(7, 'minutes'), duration(8, 'minutes')])
-  .tickFormat(d => `${fmt(d)} minutes`)
+  .tickFormat(d => `${fmt(d)} mins`)
   .tickSizeOuter(0)
   
   // x-axis
