@@ -58,6 +58,8 @@
 
           <p>I needed to challenge this voice in my head. I knew I was smart and capable (or so I thought). I looked around for a way to prove it and saw the Sunday newspaper on the coffee table in front of me, open to the puzzles page. I told myself if I could solve that day’s sudoku, I could prove to myself that I had what it takes to get acceptances. I solved that sudoku and haven’t stopped doing it since.</p>
 
+          <p>I loved that I could take things one puzzle at a time, and every puzzle, one cell at a time. The puzzle served as a constant to the ups and downs of everyday life.</p>
+
           <p>I got so into the puzzle in high school, I completed 100 sudokus in 100 consecutive days. I’d take our newspaper’s puzzles page to school and solve it during class. A classmate once said while most students had their phones out under their desks, I had the sudoku. When I moved to the US for college, I bought a book full of puzzles. I was crazy about it.</p>
 
           <p>And then I stopped doing it just as quickly as I had started.</p>
@@ -91,7 +93,7 @@
 
           <!-- <img src="assets/old_doks_2.jpg" class="oldDoks" style="right: -350px; top: 1800px;" alt="A scanned copy of an incomplete sudoku from 2017. The sudoku was torn from my newspaper." /> -->
 
-          <img src="assets/naked-single-explainer.gif" alt="An animating GIF of a sudoku grid with a cell highlighted. Each different values are entered in that cell, the grid lights up to indicate that that value is incorrect." />
+          <img src="assets/naked-single-explainer.gif" alt="An animating GIF of a sudoku grid with a cell highlighted. As different values are entered in that cell, the grid lights up to indicate that that value is incorrect." />
           <p class="caption">In the NYTimes grid above, only the number 9 can be played in the highlighted cell.</p>
 
           <p>Using the process of elimination, I identify naked singles and solve those cells. I only ever fill in a value when it’s a naked single, i.e., I never guess. So when I fill out the grid, I almost never redo cells once I fill them. This is a tradition I’ve digitized — high school me would fill out grids with a pen.</p>
@@ -129,42 +131,61 @@
 
             <p>From the grid above, we see that the typical NYT easy sudoku has more prefilled cells towards the top. This makes it easier to start from the top. In fact, of the 100 sudokus I've collected data for, my first move is in the top three rows in xx of them.</p>
 
-            <p>The higher density of cells also makes it easier for my next strategy: <i>slicing and dicing</i>. No, not vegetables. Slicing and dicing is a common maneuvre where, once you identify a cell you want to solve, you quickly scan its row and its column to see what numbers that cell <i>can't</i> be. In fact, in the primer on naked singles above, I you could solve the empty cell by slicing and dicing, rather than cycling through all nine numbers.</p>
+            <p>The higher density of cells also makes it easier for my next strategy: <i>slicing and dicing</i>. Slicing and dicing is a common maneuver where, once you find a blank cell, you quickly scan its row and its column to see what numbers that cell <i>can't</i> be. In fact, in the primer on naked singles above, you could solve the empty cell by slicing and dicing, rather than cycling through all nine numbers.</p>
 
-            <span style="color: red;">Maybe an animation/image of slicing and dicing.</span>
+            <p style="color: red;">Maybe an animation/image of slicing and dicing.</p>
 
-            <p>To recap, I start at the top, where there are more prefilled cells, then I slowly make my way to the middle and then the bottom.</p>
+            <p>Taken together, slicing and dicing and looking for naked singles are my primary strategy when solving the sudoku. I also look for something called hidden singles, but those are much harder to analyze. If you’re curious about them, read up <a href="https://www.learn-sudoku.com/hidden-singles.html" target="_blank">here</a>.</p>
 
-            <span style="color: red;">The next section will be a scrollytelling section walking through how I fill out my grids. The main takeaway is I always start toward the top (bc high density of prefilled cells), then the middle section, then the bottom -- which is why I spend longer on those sections.</span>
+            <p>We've talked about my strategy and the how the grids tend to come prefilled. When you add those two together, how do I tend to move through the grid? Let's take a look at the way I move through the puzzle.</p>
+            
+            <h4>Speed within a puzzle</h4>
+            
+            <p>Once I identify a naked single, how long do I last before I finish, i.e., solve that cell? Let’s visualize every cell again, this time coloring based on how long it took me to fill them out.</p>
+
+            <p>In the graphic below, each column is one puzzle I’ve solved, and each cell within that column represents a cell I’ve filled out for that puzzle. Some puzzles have more cells filled out because:
+              <ol>
+                <li>I made mistakes, or</li>
+                <li>the puzzle came prefilled with fewer cells.</li>
+              </ol>
+            </p>
+
           </div>
         </div>
 
         <div class="row d-flex justify-content-center">
-          <div class="col-md-10">
-            <img src="assets/string_of_pearls.jpg" />
+          <div class="col-md-12">
+            <h5>In most cases, I spend less time solving cells towards the end</h5>
+            <div id="stringOfTimes"></div>
+            <!-- <img src="assets/string_of_pearls.jpg" /> -->
           </div>
         </div>
 
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
+            <p>There isn’t a super clear pattern here, but it’s obvious that the tail ends of a puzzle take the least amount of time. This would make sense since there are fewer candidates towards the end.</p>
+
+            <p>It looks like I take less time at the start of a puzzle, slow down when I get to the middle and bottom sections, then speed up again just when I’m finishing.</p>
+
+            <p>In fact, it could be interesting to segment and cluster puzzles based on my speed throughout them. For example, group together puzzles where I’m slow at the start, fast towards the middle, and slow at the end. This could reveal similarities between puzzles and their difficulties.</p>
+
+            <h4>Do I stick to some numbers more than others?</h4>
+
+            <p>Even though there are 10 basic digits that all numbers are made of, they’re not always uniform. Benford’s Law, for example, says that <a href="https://www.scientificamerican.com/article/what-is-benfords-law-why-this-unexpected-pattern-of-numbers-is-everywhere/" target="_blank">leading digit in numbers is typically small.</a></p>
+            
             <div id="section-break-2"></div>
             <p>Crazy as it may sound, I’m not as into the sudoku now as much as when I was a teenager. While I still try to solve the puzzle once a day, teenage me would always have a grid on his person.</p>
 
-            <p>I started this project with the intention to use analytics to find patterns in how I solve the sudoku. A huge takeaway is the way I move through the grid. I could further analyze my data to see where I make mistakes; if certain types of grids trip me up (<a href="https://github.com/vivrao9/nyt-sudoku/blob/master/data-analysis/matrix-similarity.ipynb" target="_blank">preliminary analysis</a> says the grids themselves don't have much in common), or; if there are certain numbers I fill out first.</p>
-
-            <p>But in the journey, I learned that each puzzle was as unique as each day — each puzzle warrants a different perspective. Maybe I solved a puzzle faster than expected because I was excited, or maybe I missed a naked single because I was distracted.</p>
-
-            <h5>Afterword</h5>
-            <p>As much as I’ve loved working on this project, a limitation of data collection is that, in order to track my data, I could only fill out the puzzle on my laptop. As a result, the data doesn't include puzzles I've solved on my phone. Also, since I'm not always around my laptop, I actually solved the sudoku <i>less often</i> than before I started tracking my data (because I'd always put off solving the puzzle).</p>
-
-            <p>Maybe the biggest takeaway is to not measure everything and be in the moment?</p>
+            <p>While it’s cool to track and analyze your data as you solve the sudoku, it’s also important to be present as you solve the puzzle. And something the data doesn’t show is that since my first puzzle, the main message has remained the same: whatever life throws at you, take it one puzzle at a time, and one cell at a time.</p>
 
             <h4>Methodology</h4>
-            <p>I created a JavaScript browser extension on my laptop to track how I filled out the Times’ easy sudoku grid and then send this data to a server running on my Raspberry Pi. I used Jupyter notebooks to analyze my performance, and React + D3 to visualize the data on this page.</p>
+            <p>I wrote a JavaScript browser extension to track how I filled out the Times’ easy sudoku grid and then send this data to a server running on my Raspberry Pi. I used Jupyter notebooks to analyze my performance, and React + D3 to visualize the data on this page.</p>
 
-            <p>Check out my work on this project <a href="https://github.com/vivrao9/nyt-sudoku" target="_blank">here</a> or my portfolio <a href="https://vivrao9.github.io/" target="_blank">here</a>. Feel free to use the extension to analyze your performance — it only works on the NYT website, but can be edited to work on other websites too.</p>
+            <p>Check out my work on this project <a href="https://github.com/vivrao9/nyt-sudoku" target="_blank">here</a> or my portfolio <a href="https://vivrao9.github.io/" target="_blank">here.</a> Feel free to use the extension to analyze your performance — it only works on the NYT website, but can be edited to work on other websites too.</p>
               
             <p>Lastly, please reach out if you have tips on getting faster!</p>
+
+            <h4>Nerdy footnotes about data collection</h4>
           </div>
         </div>
       </div>

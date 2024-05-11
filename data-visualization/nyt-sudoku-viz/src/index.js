@@ -7,6 +7,7 @@ import Histogram from './components/Histogram/Histogram.js'
 import SectionBreak from './components/SectionBreak/SectionBreak.js'
 import ScrollySingles from './components/ScrollySingles/ScrollySingles.js'
 import RadioToggles from './components/RadioToggles/RadioToggles.js'
+import StringOfPearls from './components/StringOfPearls/StringOfPearls.js'
 
 const header = ReactDOM.createRoot(document.getElementById('header'))
 header.render(
@@ -60,6 +61,13 @@ radioToggles.render(
 //     />
 //   </>
 // )
+
+const stringOfTimes = ReactDOM.createRoot(document.getElementById('stringOfTimes'))
+stringOfTimes.render(
+  <>
+    <StringOfPearls legendLabelLeft={"More time (in seconds) →"}/>
+  </>
+)
 
 const sectionBreak2 = ReactDOM.createRoot(document.getElementById('section-break-2'))
 sectionBreak2.render(

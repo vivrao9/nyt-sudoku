@@ -19,12 +19,12 @@
   --sky_1: #1C9ACA;
   --sky_2: #08759E;
 
-    /* then green */
-    --green_-2: #D5EBA8;
-    --green_-1: #BEDA85;
-    --green_: #A0C35A;
-    --green_1: #83AA35;
-    --green_2: #648D13;
+  /* then green */
+  --green_-2: #D5EBA8;
+  --green_-1: #BEDA85;
+  --green_: #A0C35A;
+  --green_1: #83AA35;
+  --green_2: #648D13;
 
   /* next, purple */
   --purple_-2: #EEAFF5;
@@ -50,12 +50,12 @@
 
 ::moz-selection {
   color: var(--default-text);
-  background: var(--orange_-1);
+  background: var(--orange_-2);
 }
 
 ::selection {
   color: var(--default-text);
-  background: var(--orange_-1);
+  background: var(--orange_-2);
 }
 
 p a {
@@ -165,6 +165,11 @@ code {
 @media (max-width: 768px) {
   .oldDoks  {
     display: none;
+  }
+
+  #stringOfMistakes .matrix {
+    overflow-y: auto;
+    overflow-x: auto;
   }
 }
 

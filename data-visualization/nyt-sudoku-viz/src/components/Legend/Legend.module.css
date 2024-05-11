@@ -1,5 +1,5 @@
 .legend {
-    max-width: 70%;
+    max-width: min(275px, 70%);
     display: flex;
     flex-direction: column;
     flex-basis: 0;
