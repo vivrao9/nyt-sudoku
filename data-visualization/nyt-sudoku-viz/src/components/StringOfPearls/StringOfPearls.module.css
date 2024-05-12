@@ -1,0 +1,34 @@
+.pearlsWrapper  {
+    width: auto;
+    /* overflow: scroll; */
+}
+
+svg {
+    display: block;
+}
+
+.mobileScroll   {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .pearlsWrapper  {
+        width: 100%;
+        overflow: auto;
+    }
+
+    #stringOfTimesSVG {
+        width: 975px;
+        height: 580px;
+        min-width: 100%;
+    }
+
+    .mobileScroll   {
+        display: block;
+        position: absolute;
+        left: 5px;
+        bottom: 5px;
+        width: 96px;
+        opacity: .5;
+    }
+}

@@ -166,11 +166,6 @@ code {
   .oldDoks  {
     display: none;
   }
-
-  #stringOfMistakes .matrix {
-    overflow-y: auto;
-    overflow-x: auto;
-  }
 }
 
 @media (min-width: 768px) {

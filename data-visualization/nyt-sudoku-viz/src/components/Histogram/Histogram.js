@@ -60,6 +60,7 @@ function Histogram() {
   .append('svg')
   .attr('width', width)
   .attr('height', height)
+  .attr("id", "histogramSVG")
   
   // how many minutes do we have in here?
   const avgTime = duration(mean(data) / (60 * 1000), 'minutes')

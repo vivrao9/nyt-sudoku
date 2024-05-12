@@ -1,5 +1,8 @@
+import styles from '../StringOfPearls/StringOfPearls.module.css'
+import SidewaysScroll from '../../data/sideways_scroll.png'
+
 import { React, useRef, useEffect, useState } from 'react';
-import { create, select, csv, scaleLinear } from 'd3'
+import { create, select, csv, scaleLinear, scaleQuantize, style } from 'd3'
 import Legend from '../Legend/Legend.js'
 import garlandTimes from '../../data/garland__times.csv'
 
@@ -7,21 +10,22 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
 
   const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768 ? true : false)
 
-  const height = isMobile ? 800 : 615
+  const height = isMobile ? 525 : 615
   const width = 'auto'
 
   const [ data, setData ] = useState([])
   const matrixRef = useRef()
 
   const svg = select(matrixRef.current)
-    .append('svg')
+    .append("svg")
+    .attr("id", `${styles.stringOfTimesSVG}`)
     .attr("viewBox", [0, 0, width, height])
     .attr("width", width)
     .attr("height", height)
-    .attr("style", "max-width: 100%;")
+    // .attr("style", "max-width: 100%;")
 
-  var squareSize = isMobile ? 6 : 8.8
-  var padding = 2
+  var squareSize = isMobile ? 7.5 : 8.8
+  var padding = isMobile ? 2 : 2
 
   // dataFile === 'garlandTimes' ? 'garlandTimes' : 'garlandMistakes'
 
@@ -37,9 +41,9 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   let pearlsScale
 
   if (dataFile==='garlandTimes')  {
-    pearlsScale = scaleLinear()
-    .domain([4, 4.5, 5.0, 5.5, 6.0])
-    .range(['#D9D9D9', '#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'])
+    pearlsScale = scaleQuantize()
+    .domain([4, 4.5, 5.0, 5.5, 6.0,])
+    .range(['#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'])
   } else  {
     pearlsScale = scaleLinear()
     .domain([0, 1])
@@ -94,11 +98,11 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .append("g")
   .attr("class", "col")
 
-  if (isMobile) {
-    puzzles.attr("transform", (d, i) => `translate(0, ${i * (squareSize + padding)})`)
-  } else {
+  // if (isMobile) {
+    // puzzles.attr("transform", (d, i) => `translate(0, ${i * (squareSize + padding)})`)
+  // } else {
     puzzles.attr("transform", (d, i) => `translate(${i * (squareSize + padding)}, 0)`)
-  }
+  // }
 
   // Create squares within each row
   const squares = puzzles
@@ -114,16 +118,17 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("fill", (d) => pearlsScale(d))
   .attr("display", (d) => (d === "" ? "none" : "block"))
 
-  if (isMobile) {
-    squares.attr("x", (d, i) => i * (squareSize + padding))
-  } else {
+  // if (isMobile) {
+    // squares.attr("x", (d, i) => i * (squareSize + padding))
+  // } else {
     squares.attr("y", (d, i) => i * (squareSize + padding))
-  }
+  // }
 
   return (
-  <div>
+  <div className={styles.pearlsWrapper}>
     <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} />
-    <div className='matrix' ref={matrixRef}></div>
+    <div className={styles.matrix} ref={matrixRef}></div>
+    <img src={SidewaysScroll} className={styles.mobileScroll} />
   </div>
   )
 }
