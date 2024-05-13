@@ -31,6 +31,7 @@ const scrollyData = {
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     thresholds: [0, 1, 2, 3, 4],
+    ticks: "domain",
     colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
     text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid.",
     legendLabelLeft: "← Naked for fewer steps",
@@ -48,10 +49,11 @@ const scrollyData = {
       -1.93, -2.38,  6.14, -1.63,  3.2 , -5.42, -0.37,  0.54,  4.03,
       -2.4 ,  2.5 , -1.66,  0.59,  5.91,  3.13,  2.72, -2.11, -2.1 ],
     thresholds: [0, 1, 2, 3, 4],
+    ticks: "domain",
     colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
     text: "But this could also mean I notice them, but solve other cells before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
-    legendLabelLeft: "← Fewer steps than avg",
-    legendLabelRight: "More than avg →"
+    legendLabelLeft: "← Naked for fewer steps",
+    legendLabelRight: "Naked for more steps →"
   },
 
   3:  {
@@ -79,6 +81,7 @@ const scrollyData = {
        0.38,  0.14,  0.35,  0.81,  0.59, -0.73, -0.4 , -0.34, -0.64,
       -0.17,  0.24, -0.04,  0.75,  0.26,  0.99,  0.65, -0.29, -0.09],
     thresholds: [0, 0.5, 1.0, 1.5, 2.0],
+    ticks: "domain",
     colors: ['#D9D9D9', '#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'],
     text: "You can see that I spend longer toward the middle and bottom of the grid.",
     legendLabelLeft: "← Fewer seconds than avg",

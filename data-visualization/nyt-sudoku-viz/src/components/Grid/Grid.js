@@ -39,7 +39,7 @@ function Cell({ index, cellColor, cellValue, colors }) {
 
 // ======================================================================================
 // create Grid component
-function Grid({ colorData, colors, thresholds=[], legendLabelLeft=null, legendLabelRight=null }) {
+function Grid({ colorData, colors, thresholds=[], legendLabelLeft=null, legendLabelRight=null, ticks="quantiles" }) {
 
     // create ref for each chart
     const legendRef = useRef(null)
@@ -63,7 +63,7 @@ function Grid({ colorData, colors, thresholds=[], legendLabelLeft=null, legendLa
 
     return (
         <div>
-        <Legend scale={heatmap_scale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} />
+        <Legend scale={heatmap_scale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks={ticks}/>
             <div className={styles.doks_grid}>
                 {range(81).map((item, index) => {
                     return <Cell key={index}

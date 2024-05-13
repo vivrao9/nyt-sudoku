@@ -5,12 +5,13 @@ import { React, useRef, useEffect, useState } from 'react';
 import { create, select, csv, scaleLinear, scaleQuantize, style } from 'd3'
 import Legend from '../Legend/Legend.js'
 import garlandTimes from '../../data/garland__times.csv'
+import { annotationLabel, annotation, annotationCalloutElbow, annotationCalloutCircle } from 'd3-svg-annotation'
 
 function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, dataFile='garlandTimes' }) {
 
   const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768 ? true : false)
 
-  const height = isMobile ? 525 : 615
+  const height = isMobile ? 530 : 620
   const width = 'auto'
 
   const [ data, setData ] = useState([])
@@ -22,7 +23,6 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
     .attr("viewBox", [0, 0, width, height])
     .attr("width", width)
     .attr("height", height)
-    // .attr("style", "max-width: 100%;")
 
   var squareSize = isMobile ? 7.5 : 8.8
   var padding = isMobile ? 2 : 2
@@ -42,53 +42,138 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
 
   if (dataFile==='garlandTimes')  {
     pearlsScale = scaleQuantize()
-    .domain([4, 4.5, 5.0, 5.5, 6.0,])
-    .range(['#FBC990', '#FFAA4C', '#FA8400', '#C56800', '#854B0A'])
+    .domain([0, 15])
+    .range(["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"])
   } else  {
     pearlsScale = scaleLinear()
     .domain([0, 1])
     .range(["#fef0d9", "#b30000"])
   }
 
-  // // write a function to fill squares based on some criteria
-  // function fillSquare(index) {
-  //   if (index < 27) {
-  //     return row_band_cols.top;
-  //   } else if (index > 53) {
-  //     return "#d3d3d3"; // row_band_cols.bottom;
-  //   } else {
-  //     return "#d3d3d3"; //row_band_cols.middle;
-  //   }
-  // }
+  // create data annotations
+//   const type = annotationLabel
 
-  // // create object to store row band colors
-  // const row_band_cols = ({
-  //   top: "#fff7bc",
-  //   middle: "#fec44f",
-  //   bottom: "#d95f0e"
-  // })
+//   const annotations = [{
+//     note: {
+//       label: "Each column represents one puzzle",
+//       bgPadding: 4,
+//       wrap: 360,
+//       align: "left",
+//     },
+//     x: 20,
+//     y: 36,
+//     dx: 24,
+//     dy: -4,
+//     // nx: 40,
+//     // ny: 26,
+//     className: "show-bg",
+//     // type: annotationCalloutCircle,
+//     connector: { end: "circle" },
+//   }]
 
-  // // write function to identify section based on index
-  // function getSudokuSection(cellIndex) {
-  //   // Check if the index is within the valid range (0 to 80)
-  //   if (cellIndex < 0 || cellIndex > 80) {
-  //     throw new Error("Invalid index. Cell index should be between 0 and 80.");
-  //   }
-  
-  //   // Calculate the row and column indices from the cell index
-  //   const rowIndex = Math.floor(cellIndex / 9);
-  //   const colIndex = cellIndex % 9;
-  
-  //   // Determine the section based on the row and column indices
-  //   const sectionRow = Math.floor(rowIndex / 3);
-  //   const sectionCol = Math.floor(colIndex / 3);
-  
-  //   // Calculate the section number
-  //   const sectionNumber = sectionRow * 3 + sectionCol;
-  
-  //   // Return the section number (zero-indexed)
-  //   return sectionNumber;
-  // }
+// const makeAnnotations = annotation()
+//   .editMode(false)
+//   //also can set and override in the note.padding property
+//   //of the annotation object
+//   .notePadding(12)
+//   .type(type)
+//   .annotations(annotations)
+
+// select("#" + `${styles.stringOfTimesSVG}`)
+//   .append("g")
+//   .attr("class", "annotation-group")
+//   .call(makeAnnotations)
+
+  // x-axis annotation note
+  select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.annotationText}`)
+  .append("text")
+  .attr("x", 48)
+  .attr("y", 24)
+  .text("Each column represents a puzzle")
+
+  // y-axis annotation note
+  select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.annotationText}`)
+  .append("text")
+  .attr("x", 6)
+  .attr("y", 36)
+  .attr("text-orientation", "upright")
+  .attr("writing-mode", "vertical-rl")
+  .text("Puzzles are filled out in this order →")
+
+  // add annotation line that connects the first
+  // column to the note
+  select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.connector__lines}`)
+  .append("path")
+  .attr("d", "M 26 32 V 18 H 44")
+  .attr("stroke", "#b30000")
+  .attr("stroke-width", 1.5)
+  .attr("fill", "none")
+
+  // each square annotation note
+  select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.annotationText}`)
+  .append("text")
+  .attr("x", isMobile ? 108 : 48)
+  .attr("y", isMobile ? 536 : 564)
+  .text("Each square is a solved cell")
+
+  // add annotation line that connects the
+  // solved cell note to the square
+  const eachSquareAnnotationLine = select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.connector__lines}`)
+  .append("path")
+  .attr("stroke", "#b30000")
+  .attr("stroke-width", 1.5)
+  .attr("fill", "none")
+
+  if (isMobile) {
+    eachSquareAnnotationLine.attr("d", "M 260 524 V 512")
+  } else {
+    eachSquareAnnotationLine.attr("d", "M 225 560 H 290")
+  }
+
+  // add rect that highlights the first column
+  select("#" + `${styles.stringOfTimesSVG}`)
+  .append("g")
+  .attr("class", `${styles.connector__lines}`)
+  .append("rect")
+  .attr("x", 18.5)
+  .attr("y", 32)
+  .attr("width", 16)
+  .attr("height", isMobile ? 415 : 471.5)
+  .attr("stroke", "#b30000")
+  .attr("stroke-width", 1.5)
+  .attr("fill", "none")
+
+  // add puzzle index #50
+  svg
+  .selectAll(".puzzlesIndices")
+  .data(data)
+  .enter()
+  .append("g")
+  .attr("class", `${styles.puzzleIndices}`)
+  .append("text")
+  .text((d, i) => i === 49 ? "#50" : null)
+  .attr("transform", (d, i) => `translate(${28 + i * (squareSize + padding)}, 28)`)
+
+  // add puzzle index #100
+  svg
+  .selectAll(".puzzlesIndices")
+  .data(data)
+  .enter()
+  .append("g")
+  .attr("class", `${styles.puzzleIndices}`)
+  .append("text")
+  .text((d, i) => i === 99 ? "#100" : null)
+  .attr("transform", (d, i) => `translate(${4 + i * (squareSize + padding)}, 28)`)
 
   // Create rows
   const puzzles = svg
@@ -97,12 +182,12 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .enter()
   .append("g")
   .attr("class", "col")
-
-  // if (isMobile) {
-    // puzzles.attr("transform", (d, i) => `translate(0, ${i * (squareSize + padding)})`)
-  // } else {
-    puzzles.attr("transform", (d, i) => `translate(${i * (squareSize + padding)}, 0)`)
-  // }
+  .attr("transform", (d, i) => {
+    if (i === 0)  {
+      return `translate(${22 + i * (squareSize + padding)}, 36)`
+    } else  {
+      return `translate(${28+ i * (squareSize + padding)}, 36)`
+    }})
 
   // Create squares within each row
   const squares = puzzles
@@ -117,18 +202,22 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   // .attr("grid-section", (d) => getSudokuSection(d))
   .attr("fill", (d) => pearlsScale(d))
   .attr("display", (d) => (d === "" ? "none" : "block"))
-
-  // if (isMobile) {
-    // squares.attr("x", (d, i) => i * (squareSize + padding))
-  // } else {
-    squares.attr("y", (d, i) => i * (squareSize + padding))
-  // }
+  .attr("y", (d, i) => i * (squareSize + padding))
 
   return (
-  <div className={styles.pearlsWrapper}>
-    <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} />
-    <div className={styles.matrix} ref={matrixRef}></div>
-    <img src={SidewaysScroll} className={styles.mobileScroll} />
+  <div>
+    <div className={styles.pearlsHeader}>
+      <div>
+        <h5>In most cases, I spend less time solving cells towards the end</h5>
+        <p>Data suggests my last few steps are typically the fastest.</p>
+      </div>
+      <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" />
+  </div>
+
+    <div className={styles.pearlsWrapper}>
+      <div className={styles.matrix} ref={matrixRef}></div>
+      <img src={SidewaysScroll} className={styles.mobileScroll} />
+    </div>
   </div>
   )
 }

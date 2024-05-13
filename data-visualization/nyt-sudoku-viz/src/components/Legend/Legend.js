@@ -2,16 +2,24 @@ import React from 'react'
 import { range } from '../../utils'
 import styles from '../Legend/Legend.module.css'
 
-function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null}) {
+function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null, ticks="quantiles"}) {
 
   const outputColors = Object.values(scale.range())
   
   let outputQuantiles
-    try {
+  if (ticks === "quantiles")  {
     outputQuantiles = Object.values(scale.quantiles())
-  } catch(err) {
+  } else if (ticks === "domain")  {
     outputQuantiles = Object.values(scale.domain())
+  } else  {
+    outputQuantiles = Object.values(scale.thresholds())
   }
+
+  //   try {
+  //   outputQuantiles = Object.values(scale.quantiles())
+  // } catch(err) {
+  //   outputQuantiles = Object.values(scale.domain())
+  // }
 
   console.log(outputQuantiles)
 
