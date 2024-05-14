@@ -1,20 +1,41 @@
 import styles from '../StringOfPearls/StringOfPearls.module.css'
-import SidewaysScroll from '../../data/sideways_scroll.png'
 
 import { React, useRef, useEffect, useState } from 'react';
-import { create, select, csv, scaleLinear, scaleQuantize, style } from 'd3'
+import { create, select, csv, scaleLinear, scaleQuantize, scaleOrdinal } from 'd3'
 import Legend from '../Legend/Legend.js'
 import garlandTimes from '../../data/garland__times.csv'
+import garlandMistakes from '../../data/garland__mistakes.csv'
+
+function MobilePreview({ wrapperRef=wrapperRef }) {
+  const [ scrollX, setScrollX ] = useState(0)
+  
+  useEffect((event) => {
+    const updateScroll = () => {
+      setScrollX(wrapperRef.current.scrollLeft)
+    }
+
+    const pearlsWrapperElem = document.querySelector(`.${styles.pearlsWrapper}`)
+    pearlsWrapperElem.addEventListener('scroll', updateScroll)
+  }, [wrapperRef])
+
+  
+  return (
+  <div className={styles.sidewaysPreview}>
+    <div className={styles.currentView} style={{"transform": `translate(${Math.min(scrollX/6, 155-67)}px, 0`}}></div> 
+  </div>
+  )
+}
 
 function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, dataFile='garlandTimes' }) {
-
+  
   const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768 ? true : false)
 
-  const height = isMobile ? 530 : 620
+  const height = isMobile ? 560 : 620
   const width = 'auto'
-
+  
   const [ data, setData ] = useState([])
   const matrixRef = useRef()
+  const wrapperRef = useRef()
   
   const svg = select(matrixRef.current)
   .append("svg")
@@ -24,28 +45,17 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("height", height)
   
   var squareSize = isMobile ? 7.5 : 8.8
-  var padding = isMobile ? 2 : 2
+  var padding = 2
   
   // dataFile === 'garlandTimes' ? 'garlandTimes' : 'garlandMistakes'
   
   useEffect(() => {
     csv(garlandTimes).then(function(data) {
       data = data.valueOf()
+      console.log(data)
       setData([...data])
     })
   }, [])
-  
-  const [ scrollX, setScrollX ] = useState(0)
-  const wrapperRef = useRef()
-
-  useEffect((event) => {
-    const updateScroll = () => {
-      console.log(wrapperRef.current.scrollLeft)
-      setScrollX(wrapperRef.current.scrollLeft)
-    }
-    const pearlsWrapperElem = document.querySelector(`.${styles.pearlsWrapper}`)
-    pearlsWrapperElem.addEventListener('scroll', updateScroll);
-  }, [matrixRef, wrapperRef])
 
   let pearlsScale
 
@@ -54,7 +64,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
     .domain([0, 15])
     .range(["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"])
   } else  {
-    pearlsScale = scaleLinear()
+    pearlsScale = scaleOrdinal()
     .domain([0, 1])
     .range(["#fef0d9", "#b30000"])
   }
@@ -89,31 +99,6 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("stroke", "#b30000")
   .attr("stroke-width", 1.5)
   .attr("fill", "none")
-
-  // each square annotation note
-  // select("#" + `${styles.stringOfTimesSVG}`)
-  // .append("g")
-  // .attr("class", `${styles.annotationText}`)
-  // .append("text")
-  // .attr("x", isMobile ? 108 : 48)
-  // .attr("y", isMobile ? 536 : 564)
-  // .text("Each square is a solved cell")
-
-  // add annotation line that connects the
-  // solved cell note to the square
-  // const eachSquareAnnotationLine = select("#" + `${styles.stringOfTimesSVG}`)
-  // .append("g")
-  // .attr("class", `${styles.connector__lines}`)
-  // .append("path")
-  // .attr("stroke", "#b30000")
-  // .attr("stroke-width", 1.5)
-  // .attr("fill", "none")
-
-  // if (isMobile) {
-  //   eachSquareAnnotationLine.attr("d", "M 260 524 V 512")
-  // } else {
-  //   eachSquareAnnotationLine.attr("d", "M 225 560 H 290")
-  // }
 
   // add rect that highlights the first column
   select("#" + `${styles.stringOfTimesSVG}`)
@@ -184,16 +169,13 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
     <div className={styles.pearlsHeader}>
       <div>
         <h5>In most cases, I spend less time solving cells towards the end</h5>
-        <p>Data suggests my last few steps are typically the fastest.</p>
       </div>
-      <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" />
+      {/* <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" /> */}
   </div>
 
     <div className={styles.pearlsWrapper} ref={wrapperRef}>
       <div className={styles.matrix} ref={matrixRef}></div>
-      <div className={styles.sidewaysPreview}>
-        <div className={styles.currentView} style={{"transform": `translate(${Math.min(scrollX/6-5, 150-69)}px, 0`}}></div> 
-      </div>
+      <MobilePreview wrapperRef={wrapperRef} />
     </div>
   </div>
   )

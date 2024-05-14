@@ -7,10 +7,6 @@ svg {
     display: block;
 }
 
-.mobileScroll   {
-    display: none;
-}
-
 .puzzleIndices  {
     font-size: 0.9rem;
     font-family:'Courier New', Courier, monospace;
@@ -25,6 +21,7 @@ svg {
 .pearlsHeader   {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .sidewaysPreview    {
@@ -47,17 +44,8 @@ svg {
         min-width: 100%;
     }
 
-    .mobileScroll   {
-        display: none;
-        position: absolute;
-        left: 5px;
-        bottom: 5px;
-        width: 96px;
-        opacity: .5;
-    }
-
     .pearlsHeader   {
-        display:block;
+        display: block;
     }
 
     .sidewaysPreview    {
@@ -67,7 +55,7 @@ svg {
         background-image: url('../../data/sidewaysPreview.png');
         background-size: contain;
         left: 150px;
-        bottom: 25px;
+        bottom: 20px;
         width: 125px;
         height: 75px;
         opacity: .75;
@@ -77,7 +65,7 @@ svg {
         display: block;
         position: relative;
         border: 2px #4e4e4e solid;
-        width: 45px;
+        width: 40px;
         height: 75px;
     }
 }

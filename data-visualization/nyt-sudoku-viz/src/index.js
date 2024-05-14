@@ -60,6 +60,13 @@ firstPlayBarChart.render(
   </>
 )
 
+const stringOfMistakes = ReactDOM.createRoot(document.getElementById('stringOfMistakes'))
+stringOfMistakes.render(
+  <>
+    <StringOfPearls dataFile='garland__mistakes' legendLabelLeft={"More time (in seconds) →"}/>
+  </>
+)
+
 const sectionBreak2 = ReactDOM.createRoot(document.getElementById('section-break-2'))
 sectionBreak2.render(
   <>

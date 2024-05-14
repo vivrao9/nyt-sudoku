@@ -21,9 +21,6 @@ import timesData from '../../data/times.csv'
 // Moment.js imports
 import { duration } from 'moment' // https://momentjs.com/docs/#/durations/
 
-// import range
-import { range } from '../../utils'
-
 // define constants
 const width = window.innerWidth < 768 ? 360 : 550
 const height = 500

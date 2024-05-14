@@ -166,7 +166,7 @@
           <div class="col-md-6">
             <p>The chart above reinforces our insight from above: I tend to start off strong, and then slow down towards the middle.</p>
             
-            <p>But wait. According to the chart above, there's more nuance. The lower half represents the final steps of solving a puzzle. And just before I finish each puzzle, it looks like I speed through the remaining cells. This would make sense since there are fewer candidates towards the end.</p>
+            <p>But wait. According to the chart above, there's more nuance. The lower half represents the final steps of solving a puzzle. And just before I finish each puzzle, it looks like I speed through the last few cells. This would make sense since there are fewer candidates towards the end.</p>
 
             <p>In a future article, it could be interesting to segment and cluster puzzles based on my speed throughout them. For example, group together puzzles where I’m slow at the start, fast towards the middle, and slow at the end. This could reveal similarities between puzzles and their difficulties.</p>
 
@@ -191,13 +191,14 @@
             <h4>Mistakes</h4>
 
             <p>Is there a pattern with when I make mistakes? Let’s highlight all my mistakes, i.e., cells that I filled out more than once.</p>
+
+            <p style="color: red;">Need to update scale on chart below.</p>
           </div>
         </div>
 
         <div class="row d-flex justify-content-center">
           <div class="col-md-12">
-            <div id="stringOfTimes"></div>
-            <!-- <img src="assets/string_of_pearls.jpg" /> -->
+            <div id="stringOfMistakes"></div>
           </div>
         </div>
 
@@ -215,7 +216,7 @@
             <p>While it’s cool to track and analyze your data as you solve the sudoku, it’s also important to be present as you solve the puzzle. And something the data doesn’t show is that since my first puzzle, the main message has remained the same: whatever life throws at you, take it one puzzle at a time, and one cell at a time.</p>
 
             <h4>Methodology</h4>
-            <p>I wrote a JavaScript browser extension to track how I filled out the Times’ easy sudoku grid and then send this data to a server running on my Raspberry Pi. I used Jupyter notebooks to analyze my performance, and React + D3 to visualize the data on this page.</p>
+            <p>I wrote a JavaScript browser extension to track how I filled out the Times’ easy sudoku grid. I filled out 100 sudokus and had my data sent to a server running on my Raspberry Pi. I used Jupyter notebooks to analyze my performance and React + D3 to visualize the data.</p>
 
             <p>Check out my work on this project <a href="https://github.com/vivrao9/nyt-sudoku" target="_blank">here</a> or my portfolio <a href="https://vivrao9.github.io/" target="_blank">here.</a> Feel free to use the extension to analyze your performance — it only works on the NYT website, but can be edited to work on other websites too.</p>
               
