@@ -27,6 +27,14 @@ svg {
     justify-content: space-between;
 }
 
+.sidewaysPreview    {
+    display: none;
+}
+
+.currentView    {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .pearlsWrapper  {
         width: 100%;
@@ -40,7 +48,7 @@ svg {
     }
 
     .mobileScroll   {
-        display: block;
+        display: none;
         position: absolute;
         left: 5px;
         bottom: 5px;
@@ -50,5 +58,26 @@ svg {
 
     .pearlsHeader   {
         display:block;
+    }
+
+    .sidewaysPreview    {
+        display: block;
+        position: absolute;
+        background-color: black;
+        background-image: url('../../data/sidewaysPreview.png');
+        background-size: contain;
+        left: 150px;
+        bottom: 25px;
+        width: 125px;
+        height: 75px;
+        opacity: .75;
+    }
+
+    .currentView   {
+        display: block;
+        position: relative;
+        border: 2px #4e4e4e solid;
+        width: 45px;
+        height: 75px;
     }
 }

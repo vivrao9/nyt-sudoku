@@ -5,7 +5,6 @@ import { React, useRef, useEffect, useState } from 'react';
 import { create, select, csv, scaleLinear, scaleQuantize, style } from 'd3'
 import Legend from '../Legend/Legend.js'
 import garlandTimes from '../../data/garland__times.csv'
-import { annotationLabel, annotation, annotationCalloutElbow, annotationCalloutCircle } from 'd3-svg-annotation'
 
 function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, dataFile='garlandTimes' }) {
 
@@ -16,27 +15,37 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
 
   const [ data, setData ] = useState([])
   const matrixRef = useRef()
-
+  
   const svg = select(matrixRef.current)
-    .append("svg")
-    .attr("id", `${styles.stringOfTimesSVG}`)
-    .attr("viewBox", [0, 0, width, height])
-    .attr("width", width)
-    .attr("height", height)
-
+  .append("svg")
+  .attr("id", `${styles.stringOfTimesSVG}`)
+  .attr("viewBox", [0, 0, width, height])
+  .attr("width", width)
+  .attr("height", height)
+  
   var squareSize = isMobile ? 7.5 : 8.8
   var padding = isMobile ? 2 : 2
-
+  
   // dataFile === 'garlandTimes' ? 'garlandTimes' : 'garlandMistakes'
-
+  
   useEffect(() => {
     csv(garlandTimes).then(function(data) {
       data = data.valueOf()
       setData([...data])
     })
   }, [])
+  
+  const [ scrollX, setScrollX ] = useState(0)
+  const wrapperRef = useRef()
 
-  console.log("data", data)
+  useEffect((event) => {
+    const updateScroll = () => {
+      console.log(wrapperRef.current.scrollLeft)
+      setScrollX(wrapperRef.current.scrollLeft)
+    }
+    const pearlsWrapperElem = document.querySelector(`.${styles.pearlsWrapper}`)
+    pearlsWrapperElem.addEventListener('scroll', updateScroll);
+  }, [matrixRef, wrapperRef])
 
   let pearlsScale
 
@@ -50,40 +59,6 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
     .range(["#fef0d9", "#b30000"])
   }
 
-  // create data annotations
-//   const type = annotationLabel
-
-//   const annotations = [{
-//     note: {
-//       label: "Each column represents one puzzle",
-//       bgPadding: 4,
-//       wrap: 360,
-//       align: "left",
-//     },
-//     x: 20,
-//     y: 36,
-//     dx: 24,
-//     dy: -4,
-//     // nx: 40,
-//     // ny: 26,
-//     className: "show-bg",
-//     // type: annotationCalloutCircle,
-//     connector: { end: "circle" },
-//   }]
-
-// const makeAnnotations = annotation()
-//   .editMode(false)
-//   //also can set and override in the note.padding property
-//   //of the annotation object
-//   .notePadding(12)
-//   .type(type)
-//   .annotations(annotations)
-
-// select("#" + `${styles.stringOfTimesSVG}`)
-//   .append("g")
-//   .attr("class", "annotation-group")
-//   .call(makeAnnotations)
-
   // x-axis annotation note
   select("#" + `${styles.stringOfTimesSVG}`)
   .append("g")
@@ -91,7 +66,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .append("text")
   .attr("x", 48)
   .attr("y", 24)
-  .text("Each column represents a puzzle")
+  .text("Columns are puzzles; squares are cells")
 
   // y-axis annotation note
   select("#" + `${styles.stringOfTimesSVG}`)
@@ -116,29 +91,29 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("fill", "none")
 
   // each square annotation note
-  select("#" + `${styles.stringOfTimesSVG}`)
-  .append("g")
-  .attr("class", `${styles.annotationText}`)
-  .append("text")
-  .attr("x", isMobile ? 108 : 48)
-  .attr("y", isMobile ? 536 : 564)
-  .text("Each square is a solved cell")
+  // select("#" + `${styles.stringOfTimesSVG}`)
+  // .append("g")
+  // .attr("class", `${styles.annotationText}`)
+  // .append("text")
+  // .attr("x", isMobile ? 108 : 48)
+  // .attr("y", isMobile ? 536 : 564)
+  // .text("Each square is a solved cell")
 
   // add annotation line that connects the
   // solved cell note to the square
-  const eachSquareAnnotationLine = select("#" + `${styles.stringOfTimesSVG}`)
-  .append("g")
-  .attr("class", `${styles.connector__lines}`)
-  .append("path")
-  .attr("stroke", "#b30000")
-  .attr("stroke-width", 1.5)
-  .attr("fill", "none")
+  // const eachSquareAnnotationLine = select("#" + `${styles.stringOfTimesSVG}`)
+  // .append("g")
+  // .attr("class", `${styles.connector__lines}`)
+  // .append("path")
+  // .attr("stroke", "#b30000")
+  // .attr("stroke-width", 1.5)
+  // .attr("fill", "none")
 
-  if (isMobile) {
-    eachSquareAnnotationLine.attr("d", "M 260 524 V 512")
-  } else {
-    eachSquareAnnotationLine.attr("d", "M 225 560 H 290")
-  }
+  // if (isMobile) {
+  //   eachSquareAnnotationLine.attr("d", "M 260 524 V 512")
+  // } else {
+  //   eachSquareAnnotationLine.attr("d", "M 225 560 H 290")
+  // }
 
   // add rect that highlights the first column
   select("#" + `${styles.stringOfTimesSVG}`)
@@ -202,7 +177,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   // .attr("grid-section", (d) => getSudokuSection(d))
   .attr("fill", (d) => pearlsScale(d))
   .attr("display", (d) => (d === "" ? "none" : "block"))
-  .attr("y", (d, i) => i * (squareSize + padding))
+  .attr("y", (d, i) => i * (squareSize + padding)) // `${scrollPos}`}
 
   return (
   <div>
@@ -214,9 +189,11 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
       <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" />
   </div>
 
-    <div className={styles.pearlsWrapper}>
+    <div className={styles.pearlsWrapper} ref={wrapperRef}>
       <div className={styles.matrix} ref={matrixRef}></div>
-      <img src={SidewaysScroll} className={styles.mobileScroll} />
+      <div className={styles.sidewaysPreview}>
+        <div className={styles.currentView} style={{"transform": `translate(${Math.min(scrollX/6-5, 150-69)}px, 0`}}></div> 
+      </div>
     </div>
   </div>
   )

@@ -10,7 +10,6 @@ import {
   select,
   extent,
   axisBottom,
-  scaleQuantize,
   axisLeft,
 } from 'd3'
 
@@ -23,7 +22,6 @@ const height = 500
 const margin = { top: 15, right: 15, bottom: 20, left: 25 }
 const innerHeight = height - margin.top - margin.bottom
 const innerWidth = width - margin.left - margin.right
-const padding = 1
 
 // create function
 function FirstPlayBarChart() {
