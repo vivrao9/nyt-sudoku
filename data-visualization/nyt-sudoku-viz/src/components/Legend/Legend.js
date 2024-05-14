@@ -21,7 +21,7 @@ function Legend({scale, title=null, legendLabelLeft=null, legendLabelRight=null,
   //   outputQuantiles = Object.values(scale.domain())
   // }
 
-  console.log(outputQuantiles)
+  // console.log(outputQuantiles)
 
   return (
     <div className={styles.legend} key={crypto.randomUUID()}>

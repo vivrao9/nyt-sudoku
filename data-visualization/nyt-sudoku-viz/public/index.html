@@ -10,6 +10,8 @@
       content="A data-driven essay on my love for the sudoku and exploring patterns in how I fill out
       the puzzle."
     />
+    <meta name="og:image" content="%PUBLIC_URL%/meta_preview.png" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/meta_preview.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -86,7 +88,7 @@
 
           <div id="histogram" alt="This space contains a histogram chart where each square represents one completed sudoku. The dots are arranged in order of how long I took to complete that sudoku."></div>
         
-          <p>Then, in January 2023, I made a breakthrough. I started tracking what grids I fill out and how I fill them out. And in the weeks since, I started to analyze my performance to look for patterns and ways I could speed up. As a throwback to my high school self, I decided to analyze from 100 <b>Easy</b> sudokus to see what I could learn. This essay has a few insights I’ve found.</p>
+          <p>Then, in January 2023, I made a breakthrough. I started tracking what grids I fill out and how I fill them out<sup><a href="#fn1" id="ref1">1</a></sup>. And in the weeks since, I started to analyze my performance to look for patterns and ways I could speed up. As a throwback to my high school self, I decided to analyze from 100 <b>Easy</b> sudokus to see what I could learn. This essay has a few insights I’ve found.</p>
 
           <h4>Let's start with my strategy</h4>
           <p>When I first see a sudoku grid, my instinct is to look for naked singles. Naked singles are cells where <b>there can be only one possible value</b>. They're the slam dunks. No-brainers. Easy pickings. (They’re also called sole candidates, but why would you call them that when you could say naked singles? I digress.)</p>
@@ -139,7 +141,7 @@
 
             <p>We've talked about my strategy and the how the grids tend to come prefilled. When you add those two together, how do I tend to move through the grid? Let's take a look at the way I move through the puzzle.</p>
             
-            <h4>Speed within a puzzle</h4>
+            <h4>Speed within a puzzle<sup><a href="#fn2" id="ref2">2</a></sup></h4>
             
             <p>Once I identify a naked single, how long do I last before I finish, i.e., solve that cell? Let’s visualize every cell again, this time coloring based on how long it took me to fill them out.</p>
 
@@ -169,9 +171,44 @@
             <p>In a future article, it could be interesting to segment and cluster puzzles based on my speed throughout them. For example, group together puzzles where I’m slow at the start, fast towards the middle, and slow at the end. This could reveal similarities between puzzles and their difficulties.</p>
 
             <h4>Do I stick to some numbers more than others?</h4>
-
-            <p>Even though there are 10 basic digits that all numbers are made of, they’re not always uniform. Benford’s Law, for example, says that <a href="https://www.scientificamerican.com/article/what-is-benfords-law-why-this-unexpected-pattern-of-numbers-is-everywhere/" target="_blank">leading digit in numbers is typically small.</a></p>
             
+            <p>Even though there are 10 basic digits that all numbers are made of, they’re not always uniform. Benford’s Law, for example, says that <a href="https://www.scientificamerican.com/article/what-is-benfords-law-why-this-unexpected-pattern-of-numbers-is-everywhere/" target="_blank">leading digit in numbers is typically small.</a></p>
+
+            <div id="firstPlay" alt="This space contains a bar chart where each square represents one completed sudoku. More than 30% of my sudokus began with the number one."></div>
+
+            <p>From the chart above, I tend to start with the number “1” most of the time. While it isn't close to Benford's Law, it's still skewed towards smaller numbers. In fact, in the 84 sudokus I have data for<sup><a href="#fn3" id="ref3">3</a></sup></i>, I started with the number “1” for 32 of them.</p>
+
+            <p>Is it because the first three rows typically have the number 1 prefilled? Not really. 1s are no less often to be prefilled than 8s. Or 3s, for that matter. Then why do I always start with the number 1?</p>
+
+            <p>Upon reflection, I feel like smaller numbers are easier to remember. When I solve the grid, sometimes I think “This cell can be a 5 or 6. Let me come back to this later.” I’ve noticed that when the numbers tend to be larger, it’s harder for me to remember them, despite still being under 10. I can’t explain why this is, but I’d be surprised if other people felt this way too.</p>
+
+            <p>This could be an interesting way for me to get faster. For future puzzles, I can write down potential candidates in the cell. The Times website allows players to play in Candidate mode — maybe I should use this feature more.</p>
+
+            <p>It might even be worth <b>diversifying my opening move</b>. I overwhelmingly start solving the grid by playing the number 1 in the first three rows.</p>
+
+            <img src="./assets/duolingo.png" alt="An image of the Duolingo owl saying “Let's review your mistakes!”" />
+
+            <h4>Mistakes</h4>
+
+            <p>Is there a pattern with when I make mistakes? Let’s highlight all my mistakes, i.e., cells that I filled out more than once.</p>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12">
+            <div id="stringOfTimes"></div>
+            <!-- <img src="assets/string_of_pearls.jpg" /> -->
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <p>It looks like I’m more likely to make mistakes when I’m almost done solving a puzzle. This is most likely because I get impatient. Sometimes I also guess because it’s faster than slicing and dicing.</p>
+
+            <p><b>I made a mistake in 65% of the puzzles I solved.</b> It’s not only important to make fewer mistakes, but also reduce the amount of time it takes to correct them. When I make a mistake, on average, it sets me back 5.1 seconds. Here’s a distribution of how long I spent correcting mistakes.</p>
+
+            <div id="distMistakeTime" alt="This space contains a histogram showing the distribution of times I took me to correct a mistake. The median time to correction is xxx."></div>
+
             <div id="section-break-2"></div>
             <p>Crazy as it may sound, I’m not as into the sudoku now as much as when I was a teenager. While I still try to solve the puzzle once a day, teenage me would always have a grid on his person.</p>
 
@@ -184,7 +221,16 @@
               
             <p>Lastly, please reach out if you have tips on getting faster!</p>
 
-            <h4>Nerdy footnotes about data collection</h4>
+            <div class="footnotes">
+              <p class="footnotesTitle">Notes on data collection</p>
+                <p><sup id="fn1">1</sup><b>Desktop: </b>To standardize data collection, I only filled out the sudoku from my laptop and not on my phone. Hence, this sample of data may not be wholly representative of my sudoku solving abilities. <a href="#ref1" title="Jump back to footnote 4 in the text.">↩</a></p>
+
+                <p><sup id="fn2">2</sup><b>Speed: </b>Throughout this project, I reference the time it took me to solve a cell. To calculate this, I measured how long it took me to enter a value in that cell since the last filled cell. A limitation of this is if I’m looking at solving one cell, but end up solving another. <a href="#ref2" title="Jump back to footnote 2 in the text.">↩</a></p>
+
+                <p><sup id="fn3">3</sup><b>Puzzle data: </b>Because of the occasional tech glitch, I don’t have grid data for every puzzle I filled out. Therefore, the chart showing my first play is only for 84 puzzles, instead of 100. <a href="#ref3" title="Jump back to footnote 3 in the text.">↩</a></p>
+                </ul>
+            </div>
+
           </div>
         </div>
       </div>

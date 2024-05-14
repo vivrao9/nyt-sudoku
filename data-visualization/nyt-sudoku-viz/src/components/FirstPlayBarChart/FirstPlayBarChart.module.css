@@ -1,0 +1,10 @@
+.annotation {
+    font-family: 'PT Sans';
+    font-size: 0.9rem;
+}
+
+.gridlines  {
+    stroke: #d9d9d9;
+    stroke-width: 1px;
+    transform: translate(-8,0);
+}

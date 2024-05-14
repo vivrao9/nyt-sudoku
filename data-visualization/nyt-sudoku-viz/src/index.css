@@ -98,13 +98,14 @@ h4  {
 h5  {
   font-family: 'PT Sans', 'sans-serif';
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: var(--default-text);
 }
 
 h6  {
   font-family: 'PT Sans', 'sans-serif';
-  font-size: 1.25rem;
+  font-weight: 800;
+  font-size: 1rem;
   color: var(--default-text);
 }
 
@@ -160,6 +161,30 @@ code {
 .oldDoks  {
   position: absolute;
   max-width: 35%;
+}
+
+.footnotes  {
+  border: 2px solid var(--light_gray_);
+  padding: 1rem;
+  color: #4e4e4e;
+  margin-bottom: 1rem;
+}
+
+.footnotes ul {
+  margin-bottom: 0px;
+}
+
+.footnotesTitle  {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--default-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.footnotes sup  {
+  margin-right: 0.4rem;
 }
 
 @media (max-width: 768px) {
