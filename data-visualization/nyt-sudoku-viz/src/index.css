@@ -95,6 +95,11 @@ h4  {
   color: var(--default-text);
 }
 
+h4 sup a  {
+  color: var(--default-text);
+  font-size: 1rem;
+}
+
 h5  {
   font-family: 'PT Sans', 'sans-serif';
   font-weight: 600;
@@ -107,6 +112,10 @@ h6  {
   font-weight: 800;
   font-size: 1rem;
   color: var(--default-text);
+}
+
+sup a {
+  text-decoration: none;
 }
 
 img {

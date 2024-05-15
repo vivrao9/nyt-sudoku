@@ -8,7 +8,6 @@ import {
   scaleBand,
   scaleLinear,
   select,
-  extent,
   axisBottom,
   axisLeft,
 } from 'd3'
@@ -91,7 +90,7 @@ function FirstPlayBarChart() {
   .attr("y", `${innerHeight - margin.bottom}`)
   .attr("width", xScale.bandwidth())
   .attr("height", (d, i) => yScale(0) - yScale(d))
-  .attr("fill", "#83AA35")
+  .attr("fill", "#B0C4EF")
   .attr("transform", d => `translate(0, -${innerHeight - margin.bottom - yScale(d)})`) // don't know why this works
   
   return <>

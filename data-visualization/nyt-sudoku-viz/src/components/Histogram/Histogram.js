@@ -4,7 +4,6 @@ import styles from './Histogram.module.css'
 
 // D3 imports
 import {
-  mean,
   csv,
   scaleLinear,
   select,
@@ -12,38 +11,37 @@ import {
   axisBottom,
   bin,
   timeFormat,
-  scaleQuantize
+  median
 } from 'd3'
-
-// import CSV file
-import timesData from '../../data/times.csv'
 
 // Moment.js imports
 import { duration } from 'moment' // https://momentjs.com/docs/#/durations/
 
 // define constants
 const width = window.innerWidth < 768 ? 360 : 550
-const height = 500
 const margin = { top: 5, right: 15, bottom: 20, left: 15 }
-const innerHeight = height - margin.top - margin.bottom
 const innerWidth = width - margin.left - margin.right
-const boxSize = 8.25
-const numBins = 48
-const plotBins = bin().thresholds(numBins)
 const padding = 1
 
 // create function
-function Histogram() {
+function Histogram({ dataFile, color="#FB9B00" }) {
   const [ data, setData ] = useState([])
   const chartRef = useRef()
+
+  // define constants
+  const numBins = color==="#FB9B00" ? 48 : 12
+  const plotBins = bin().thresholds(numBins)
+  const boxSize = color==="#FB9B00" ? 8.25 : 10
+  const height = color==="#FB9B00" ? 545 : 450
+  const innerHeight = height - margin.top - margin.bottom
   
   useEffect(() => {
-    csv(timesData).then(function(timesData) {
-      timesData = timesData.map(d => '00:' + d["Vivek's time"])
-      timesData = timesData.map(d => duration(d))
-      timesData = timesData.filter(d => d > 0)
-      timesData = timesData.valueOf()
-      setData([...timesData])
+    csv(dataFile).then(function(dataFile) {
+      dataFile = dataFile.map(d => '00:' + d["times"])
+      dataFile = dataFile.map(d => duration(d))
+      dataFile = dataFile.filter(d => d > 0)
+      dataFile = dataFile.valueOf()
+      setData([...dataFile])
     })
   }, [])
 
@@ -57,16 +55,16 @@ function Histogram() {
   .append('svg')
   .attr('width', width)
   .attr('height', height)
-  .attr("id", "histogramSVG")
   
   // how many minutes do we have in here?
-  const avgTime = duration(mean(data) / (60 * 1000), 'minutes')
-  const avgTimeAsStr = avgTime.minutes() + ':' + avgTime.seconds()
+  let avgTime
+  if (color==="#FB9B00")  {
+    avgTime = duration(median(data) / (60 * 1000), 'minutes')
+  } else {
+    avgTime = duration(median(data) / (1000), 'seconds')
+  }
 
-  // create color function
-  const col = scaleQuantize()
-  .domain(extent(data))
-  .range(['#FBC990', '#FFAA4C', '#FA8400', '#C56800'])
+  const avgTimeAsStr = avgTime.minutes() + ':' + String(avgTime.seconds()).padStart(2, '0')
 
   // create cols for each histogram bin
   const histCols = svg.append('g')
@@ -87,20 +85,30 @@ function Histogram() {
   .attr("y", (d, i) => -(i * (boxSize + padding))) // negative value makes it start from the bottom
   .attr("width", boxSize)
   .attr('height', boxSize)
-  .attr("fill", "#FB9B00") //d => col(d))
+  .attr("fill", color) //d => col(d))
   
   // create different scale for time-specific components
   const timeScale = scaleLinear()
   .domain(extent(data))
   .range([margin.left, innerWidth])
 
-  const fmt = timeFormat("%-M")
-
   // define x-axis
-  const gx = axisBottom(timeScale)
-  .tickValues([duration(1, 'minutes'), duration(2, 'minutes'), duration(3, 'minutes'), duration(1, 'minutes'), duration(4, 'minutes'), duration(5, 'minutes'), duration(6, 'minutes'), duration(7, 'minutes'), duration(8, 'minutes')])
-  .tickFormat(d => `${fmt(d)} mins`)
-  .tickSizeOuter(0)
+  let gx, fmt
+  if (color==="#FB9B00")  {
+    fmt = timeFormat("%-M")
+
+    gx = axisBottom(timeScale)
+    .tickValues([duration(1, 'minutes'), duration(2, 'minutes'), duration(3, 'minutes'), duration(1, 'minutes'), duration(4, 'minutes'), duration(5, 'minutes'), duration(6, 'minutes'), duration(7, 'minutes'), duration(8, 'minutes')])
+    .tickFormat(d => `${fmt(d)} mins`)
+    .tickSizeOuter(0)
+  } else {
+    fmt = timeFormat("%S")
+
+    gx = axisBottom(timeScale)
+    .tickValues([duration(5, 'seconds'), duration(15, 'seconds'), duration(25, 'seconds'), duration(35, 'seconds'), duration(45, 'seconds'), duration(55, 'seconds')])
+    .tickFormat(d => `${fmt(d)} secs`)
+    .tickSizeOuter(0)
+  }
   
   // x-axis
   svg.append("g")
@@ -110,19 +118,28 @@ function Histogram() {
   // mean line
   svg
   .append("line")
-  .attr("x1", timeScale(mean(data)))
+  .attr("x1", timeScale(median(data)))
   .attr("y1", innerHeight - margin.bottom + boxSize)
-  .attr("x2", timeScale(mean(data)))
+  .attr("x2", timeScale(median(data)))
   .attr("y2", 0)
   .attr("stroke", "#272727")
   .style('stroke-width', "0.75px")
 
   // mean text
-  svg.append("text").attr("x", timeScale(mean(data)) + 5).attr("y", 15).text("Average time: " + avgTimeAsStr).attr("class", `${styles.annotation}`)
+  svg.append("text").attr("x", timeScale(median(data)) + 5).attr("y", 15).text("Median time: " + avgTimeAsStr).attr("class", `${styles.annotation}`)
 
   return <>
     <div ref={chartRef}>
-      <h4>Between Feb. 2021 and Feb. 2024, I solved {data.length} sudokus, with an average time of {avgTimeAsStr}</h4>
+      <h5>
+        {
+          color === "#FB9B00" ? (
+            <>Between Feb. 2021 and Feb. 2024, I solved {data.length} sudokus, with a median time of {avgTimeAsStr}</>
+          )
+          : <>
+          A majority of my mistakes take fewer than five seconds to correct
+          </>
+        }
+      </h5>
     </div>
   </>
 }

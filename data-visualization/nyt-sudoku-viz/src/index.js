@@ -10,6 +10,12 @@ import RadioToggles from './components/RadioToggles/RadioToggles.js'
 import StringOfPearls from './components/StringOfPearls/StringOfPearls.js'
 import FirstPlayBarChart from './components/FirstPlayBarChart'
 
+// load CSV files
+import timesData from '../src/data/times.csv'
+import garlandTimes from '../src/data/garland__times.csv' //'../../data/garland__times.csv'
+import garlandMistakes from '../src/data/garland__mistakes.csv'
+import mistakeTimes from '../src/data/timeSpentFixingMistakesByDate.csv'
+
 const header = ReactDOM.createRoot(document.getElementById('header'))
 header.render(
   <>
@@ -20,7 +26,7 @@ header.render(
 const histogram = ReactDOM.createRoot(document.getElementById('histogram'))
 histogram.render(
   <>
-    <Histogram />
+    <Histogram dataFile={timesData}/>
   </>
 )
 
@@ -49,7 +55,7 @@ radioToggles.render(
 const stringOfTimes = ReactDOM.createRoot(document.getElementById('stringOfTimes'))
 stringOfTimes.render(
   <>
-    <StringOfPearls legendLabelLeft={"More time (in seconds) →"}/>
+    <StringOfPearls dataFile={garlandTimes} scale="quantize" legendLabelLeft={"Time to solve (in seconds) →"}/>
   </>
 )
 
@@ -63,7 +69,14 @@ firstPlayBarChart.render(
 const stringOfMistakes = ReactDOM.createRoot(document.getElementById('stringOfMistakes'))
 stringOfMistakes.render(
   <>
-    <StringOfPearls dataFile='garland__mistakes' legendLabelLeft={"More time (in seconds) →"}/>
+    <StringOfPearls dataFile={garlandMistakes} scale="ordinal" legendLabelLeft={"More time (in seconds) →"}/>
+  </>
+)
+
+const mistakeHistogram = ReactDOM.createRoot(document.getElementById('mistakeHistogram'))
+mistakeHistogram.render(
+  <>
+    <Histogram dataFile={mistakeTimes} color="#BA81C5" />
   </>
 )
 

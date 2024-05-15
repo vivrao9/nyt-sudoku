@@ -106,7 +106,7 @@ const ScrollamaDemo = () => {
       </figure>
 
       <article>
-        <Scrollama offset={0.3} onStepEnter={onStepEnter}>
+        <Scrollama offset={0.75} onStepEnter={onStepEnter}>
           {range(Object.keys(scrollyData).length).map((item, index) => {
             return <Step data={index} key={index}><div className={styles.scrollyCard}><p dangerouslySetInnerHTML={{ __html: scrollyData[index]['text'] }}></p></div></Step>
           })}

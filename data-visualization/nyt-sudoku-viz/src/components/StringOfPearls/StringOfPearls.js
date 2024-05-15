@@ -3,22 +3,29 @@ import styles from '../StringOfPearls/StringOfPearls.module.css'
 import { React, useRef, useEffect, useState } from 'react';
 import { create, select, csv, scaleLinear, scaleQuantize, scaleOrdinal } from 'd3'
 import Legend from '../Legend/Legend.js'
-import garlandTimes from '../../data/garland__times.csv'
-import garlandMistakes from '../../data/garland__mistakes.csv'
 
 function MobilePreview({ wrapperRef=wrapperRef }) {
   const [ scrollX, setScrollX ] = useState(0)
   
   useEffect((event) => {
     const updateScroll = () => {
-      setScrollX(wrapperRef.current.scrollLeft)
+      if (wrapperRef.current) {
+        setScrollX(wrapperRef.current.scrollLeft)
+      }
     }
 
-    const pearlsWrapperElem = document.querySelector(`.${styles.pearlsWrapper}`)
-    pearlsWrapperElem.addEventListener('scroll', updateScroll)
+    const pearlsWrapperElem = wrapperRef.current // document.querySelector(`.${styles.pearlsWrapper}`)
+    if (pearlsWrapperElem) {
+      pearlsWrapperElem.addEventListener('scroll', updateScroll)
+    }
+
+    return () => {
+      if (pearlsWrapperElem) {
+        pearlsWrapperElem.removeEventListener('scroll', updateScroll);
+      }
+    }
   }, [wrapperRef])
 
-  
   return (
   <div className={styles.sidewaysPreview}>
     <div className={styles.currentView} style={{"transform": `translate(${Math.min(scrollX/6, 155-67)}px, 0`}}></div> 
@@ -26,11 +33,11 @@ function MobilePreview({ wrapperRef=wrapperRef }) {
   )
 }
 
-function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, dataFile='garlandTimes' }) {
+function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRight=null }) {
   
   const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768 ? true : false)
 
-  const height = isMobile ? 560 : 620
+  const height = isMobile ? 575 : 675
   const width = 'auto'
   
   const [ data, setData ] = useState([])
@@ -50,27 +57,26 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   // dataFile === 'garlandTimes' ? 'garlandTimes' : 'garlandMistakes'
   
   useEffect(() => {
-    csv(garlandTimes).then(function(data) {
+    csv(dataFile).then(function(data) {
       data = data.valueOf()
-      console.log(data)
       setData([...data])
     })
   }, [])
 
   let pearlsScale
 
-  if (dataFile==='garlandTimes')  {
+  if (scale==="quantize")  {
     pearlsScale = scaleQuantize()
     .domain([0, 15])
-    .range(["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"])
+    .range(["#FFD8AC", "#FFBC71", "#FB9B00", "#C56800", "#854B0A", "#502C05"])
   } else  {
     pearlsScale = scaleOrdinal()
-    .domain([0, 1])
-    .range(["#fef0d9", "#b30000"])
+    .domain(["0", "1"])
+    .range(["#fef0d9", "#502C05"])
   }
 
   // x-axis annotation note
-  select("#" + `${styles.stringOfTimesSVG}`)
+  svg // select("#" + `${styles.stringOfTimesSVG}`)
   .append("g")
   .attr("class", `${styles.annotationText}`)
   .append("text")
@@ -79,7 +85,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .text("Columns are puzzles; squares are cells")
 
   // y-axis annotation note
-  select("#" + `${styles.stringOfTimesSVG}`)
+  svg // select("#" + `${styles.stringOfTimesSVG}`)
   .append("g")
   .attr("class", `${styles.annotationText}`)
   .append("text")
@@ -91,7 +97,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
 
   // add annotation line that connects the first
   // column to the note
-  select("#" + `${styles.stringOfTimesSVG}`)
+  svg // select("#" + `${styles.stringOfTimesSVG}`)
   .append("g")
   .attr("class", `${styles.connector__lines}`)
   .append("path")
@@ -101,7 +107,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("fill", "none")
 
   // add rect that highlights the first column
-  select("#" + `${styles.stringOfTimesSVG}`)
+  svg //select("#" + `${styles.stringOfTimesSVG}`)
   .append("g")
   .attr("class", `${styles.connector__lines}`)
   .append("rect")
@@ -133,7 +139,7 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .attr("class", `${styles.puzzleIndices}`)
   .append("text")
   .text((d, i) => i === 99 ? "#100" : null)
-  .attr("transform", (d, i) => `translate(${4 + i * (squareSize + padding)}, 28)`)
+  .attr("transform", (d, i) => `translate(${i * (squareSize + padding) + 2}, 28)`)
 
   // Create rows
   const puzzles = svg
@@ -155,23 +161,33 @@ function StringOfPearls({ legendLabelLeft=null, legendLabelRight=null, scale, da
   .data((d) => Object.values(d))
   .enter()
   .append("rect")
-  .attr("class", (d) => `square`) // (d) => `square ${d}`)
+  .attr("class", (d) => `square`)
   .attr("width", squareSize)
   .attr("height", squareSize)
   .attr("cell-index", (d) => d)
-  // .attr("grid-section", (d) => getSudokuSection(d))
   .attr("fill", (d) => pearlsScale(d))
   .attr("display", (d) => (d === "" ? "none" : "block"))
-  .attr("y", (d, i) => i * (squareSize + padding)) // `${scrollPos}`}
+  .attr("y", (d, i) => i * (squareSize + padding))
 
   return (
   <div>
     <div className={styles.pearlsHeader}>
-      <div>
-        <h5>In most cases, I spend less time solving cells towards the end</h5>
-      </div>
-      {/* <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" /> */}
-  </div>
+      <div><h5>
+        {
+          scale==="quantize" ?
+            "In most cases, I spend less time solving cells towards the end"
+            : (
+            <>I tend to make <span className={styles.mistakes}>mistakes</span> towards the end of puzzles</>
+            )
+          }
+      </h5></div>
+      {
+          scale==="quantize" ?
+          <Legend scale={pearlsScale} legendLabelLeft={legendLabelLeft} legendLabelRight={legendLabelRight} ticks="threshold" />
+            :
+            null
+      }
+    </div>
 
     <div className={styles.pearlsWrapper} ref={wrapperRef}>
       <div className={styles.matrix} ref={matrixRef}></div>

@@ -32,6 +32,12 @@ svg {
     display: none;
 }
 
+.mistakes   {
+    background-color: #502C05;
+    color: white;
+    padding: 0 0.25rem 0 0.25rem;
+}
+
 @media (max-width: 768px) {
     .pearlsWrapper  {
         width: 100%;
