@@ -72,7 +72,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
   } else  {
     pearlsScale = scaleOrdinal()
     .domain(["0", "1"])
-    .range(["#fef0d9", "#502C05"])
+    .range(["#fef0d9", "#854B0A"])
   }
 
   // x-axis annotation note
@@ -82,7 +82,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
   .append("text")
   .attr("x", 48)
   .attr("y", 24)
-  .text("Columns are puzzles; squares are cells")
+  .text("Each column is a puzzle; each square is a cell I filled out")
 
   // y-axis annotation note
   svg // select("#" + `${styles.stringOfTimesSVG}`)
@@ -93,7 +93,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
   .attr("y", 36)
   .attr("text-orientation", "upright")
   .attr("writing-mode", "vertical-rl")
-  .text("Puzzles are filled out in this order →")
+  .text("Puzzles are solved from top to bottom →")
 
   // add annotation line that connects the first
   // column to the note

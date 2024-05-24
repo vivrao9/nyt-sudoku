@@ -115,18 +115,20 @@ function Histogram({ dataFile, color="#FB9B00" }) {
   .attr("transform", `translate(0,${innerHeight - margin.bottom + boxSize})`)
   .call(gx)
 
-  // mean line
-  svg
-  .append("line")
-  .attr("x1", timeScale(median(data)))
-  .attr("y1", innerHeight - margin.bottom + boxSize)
-  .attr("x2", timeScale(median(data)))
-  .attr("y2", 0)
-  .attr("stroke", "#272727")
-  .style('stroke-width', "0.75px")
+  if (color==="#FB9B00")  {
+    // mean line
+    svg
+    .append("line")
+    .attr("x1", timeScale(median(data)))
+    .attr("y1", innerHeight - margin.bottom + boxSize)
+    .attr("x2", timeScale(median(data)))
+    .attr("y2", 0)
+    .attr("stroke", "#272727")
+    .style('stroke-width', "0.75px")
 
-  // mean text
-  svg.append("text").attr("x", timeScale(median(data)) + 5).attr("y", 15).text("Median time: " + avgTimeAsStr).attr("class", `${styles.annotation}`)
+    // mean text
+    svg.append("text").attr("x", timeScale(median(data)) + 5).attr("y", 15).text("Median time: " + avgTimeAsStr).attr("class", `${styles.annotation}`)
+  }
 
   return <>
     <div ref={chartRef}>

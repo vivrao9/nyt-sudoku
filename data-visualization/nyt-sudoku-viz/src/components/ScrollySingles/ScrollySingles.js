@@ -17,7 +17,7 @@ const scrollyData = {
       9.4 , 14.3 , 10.14, 12.39, 17.71, 14.93, 14.52,  9.69,  9.7 ],
     colors: ['#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4'],
     text: "Once a cell becomes a naked single, I fill it out after solving 12 other cells, on average.<br><br>But not all cells are created equally. Let's look at all the cells where I spent <i>longer than average</i>.",
-    legendLabelLeft: "Is a naked single for more steps →"
+    legendLabelLeft: "Is a naked single for more moves →"
   },
 
   1:  {
@@ -34,8 +34,8 @@ const scrollyData = {
     ticks: "domain",
     colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
     text: "I take longer to fill out naked singles that are toward the bottom of the puzzle. This might mean I pay less attention to this part of the grid.",
-    legendLabelLeft: "← Naked for fewer steps",
-    legendLabelRight: "Naked for more steps →"
+    legendLabelLeft: "← Naked for fewer moves",
+    legendLabelRight: "Naked for more moves →"
   },
 
   2:  {
@@ -52,8 +52,8 @@ const scrollyData = {
     ticks: "domain",
     colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
     text: "But this could also mean I notice them, but solve other cells before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
-    legendLabelLeft: "← Naked for fewer steps",
-    legendLabelRight: "Naked for more steps →"
+    legendLabelLeft: "← Naked for fewer moves",
+    legendLabelRight: "Naked for more moves →"
   },
 
   3:  {

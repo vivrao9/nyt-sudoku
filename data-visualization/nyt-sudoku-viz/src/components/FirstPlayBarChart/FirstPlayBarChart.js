@@ -96,7 +96,7 @@ function FirstPlayBarChart() {
   return <>
     <div ref={freqRef}>
       <h5>My first play is the number "1" more than 35% of the time</h5>
-      <p>The chart below shows what number I typically start with.</p>
+      <p>The chart below shows the distribution of numbers I've started with.</p>
     </div>
   </>
 }
