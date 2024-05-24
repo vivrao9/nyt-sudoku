@@ -72,7 +72,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
   } else  {
     pearlsScale = scaleOrdinal()
     .domain(["0", "1"])
-    .range(["#fef0d9", "#502C05"])
+    .range(["#fef0d9", "#854B0A"])
   }
 
   // x-axis annotation note
