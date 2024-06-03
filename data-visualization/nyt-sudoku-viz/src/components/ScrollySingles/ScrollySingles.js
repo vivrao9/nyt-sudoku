@@ -51,7 +51,7 @@ const scrollyData = {
     thresholds: [0, 1, 2, 3, 4],
     ticks: "domain",
     colors: ['#D9D9D9', '#EEAFF5', '#F37FFF', '#E40EFA', '#B206C4', '#8A0497'],
-    text: "But this could also mean I notice them, but solve other cells before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
+    text: "This could also mean I notice them, but solve other cells before I get to the ones at the bottom.<br><br>Let’s reanalyze these cells using a different data point: average number of seconds to fill a cell.",
     legendLabelLeft: "← Naked for fewer moves",
     legendLabelRight: "Naked for more moves →"
   },
