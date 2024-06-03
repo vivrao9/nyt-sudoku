@@ -1,7 +1,7 @@
 import styles from '../StringOfPearls/StringOfPearls.module.css'
 
 import { React, useRef, useEffect, useState } from 'react';
-import { create, select, csv, scaleLinear, scaleQuantize, scaleOrdinal } from 'd3'
+import { create, select, csv, scaleLinear, scaleQuantize, scaleOrdinal, style } from 'd3'
 import Legend from '../Legend/Legend.js'
 
 function MobilePreview({ wrapperRef=wrapperRef }) {
@@ -28,7 +28,11 @@ function MobilePreview({ wrapperRef=wrapperRef }) {
 
   return (
   <div className={styles.sidewaysPreview}>
-    <div className={styles.currentView} style={{"transform": `translate(${Math.min(scrollX/6, 155-67)}px, 0`}}></div> 
+    <div style={{"transform": `translate(${Math.min(scrollX/6, 155-67)}px, 0`, "display": "flex", "alignItems": "center"}}>
+      <div className={styles.leftArrow}></div>
+      <div className={styles.currentView}></div>
+      <div className={styles.rightArrow}></div>
+    </div>
   </div>
   )
 }
@@ -168,6 +172,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
   .attr("fill", (d) => pearlsScale(d))
   .attr("display", (d) => (d === "" ? "none" : "block"))
   .attr("y", (d, i) => i * (squareSize + padding))
+  .attr("z-index", -1)
 
   return (
   <div>
@@ -190,6 +195,7 @@ function StringOfPearls({ dataFile, scale, legendLabelLeft=null, legendLabelRigh
     </div>
 
     <div className={styles.pearlsWrapper} ref={wrapperRef}>
+      <div className={styles.pearlsFade}></div>
       <div className={styles.matrix} ref={matrixRef}></div>
       <MobilePreview wrapperRef={wrapperRef} />
     </div>
