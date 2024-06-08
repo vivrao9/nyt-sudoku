@@ -62,7 +62,7 @@ stringOfTimes.render(
 const firstPlayBarChart = ReactDOM.createRoot(document.getElementById('firstPlay'))
 firstPlayBarChart.render(
   <>
-    <FirstPlayBarChart legendLabelLeft={"More time (in seconds) →"}/>
+    <FirstPlayBarChart />
   </>
 )
 

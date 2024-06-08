@@ -74,7 +74,7 @@ svg {
         height: 100%;
         width: 48px;
         right: 0%;
-        background: linear-gradient(to left, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 95%);
+        background: linear-gradient(to left, rgba(255,255,255,1) 25%,rgba(255,255,255,0) 100%);
     }
 
     #stringOfTimesSVG {
