@@ -59,8 +59,8 @@ stringOfTimes.render(
   </>
 )
 
-const firstPlayBarChart = ReactDOM.createRoot(document.getElementById('firstPlay'))
-firstPlayBarChart.render(
+const firstPlay = ReactDOM.createRoot(document.getElementById('firstPlay'))
+firstPlay.render(
   <>
     <FirstPlayBarChart />
   </>
