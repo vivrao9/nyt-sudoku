@@ -9,7 +9,7 @@ import {
   scaleLinear,
   select,
   axisBottom,
-  axisLeft,
+  axisLeft
 } from 'd3'
 
 // import CSV file
@@ -32,7 +32,7 @@ function FirstPlayBarChart() {
       freqData = freqData.map(d => +d.frequency)
       setData([...freqData])
     })
-  }, [])
+  }, [freqData])
 
   // create the x scale
   const xScale = scaleBand()
@@ -44,6 +44,8 @@ function FirstPlayBarChart() {
   const yScale = scaleLinear()
   .domain([0, 35])
   .range([innerHeight - margin.bottom, 0])
+
+  select(freqRef.current).select('svg').remove();
   
   // select and create SVG
   const svg = select(freqRef.current)
