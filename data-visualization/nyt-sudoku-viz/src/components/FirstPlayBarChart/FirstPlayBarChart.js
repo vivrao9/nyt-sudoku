@@ -32,7 +32,7 @@ function FirstPlayBarChart() {
       freqData = freqData.map(d => +d.frequency)
       setData([...freqData])
     })
-  }, [freqData])
+  }, [])
 
   // create the x scale
   const xScale = scaleBand()
