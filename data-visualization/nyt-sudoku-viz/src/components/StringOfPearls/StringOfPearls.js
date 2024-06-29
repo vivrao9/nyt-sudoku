@@ -1,7 +1,7 @@
 import styles from '../StringOfPearls/StringOfPearls.module.css'
 
 import { React, useRef, useEffect, useState } from 'react';
-import { create, select, csv, scaleLinear, scaleQuantize, scaleOrdinal, style } from 'd3'
+import { select, csv, scaleQuantize, scaleOrdinal } from 'd3'
 import Legend from '../Legend/Legend.js'
 
 function MobilePreview({ wrapperRef=wrapperRef }) {

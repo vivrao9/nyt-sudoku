@@ -9,7 +9,7 @@ import {
   scaleLinear,
   select,
   axisBottom,
-  axisLeft,
+  axisLeft
 } from 'd3'
 
 // import CSV file
@@ -44,12 +44,16 @@ function FirstPlayBarChart() {
   const yScale = scaleLinear()
   .domain([0, 35])
   .range([innerHeight - margin.bottom, 0])
+
+  select(freqRef.current).select('svg').remove();
   
   // select and create SVG
   const svg = select(freqRef.current)
   .append('svg')
   .attr('width', width)
   .attr('height', height)
+  .attr('viewBox', `0 0 ${width} ${height}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet')
   .attr("id", "freqSVG")
   
   // define x-axis
