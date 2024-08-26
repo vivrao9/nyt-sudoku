@@ -1,3 +1,5 @@
+⚠ Data updates for this repo will temporarily be paused for about two weeks. VR 08/26/24 ⚠
+
 # What is this repo?
 I've always loved doing the sudoku. Doing it over and over and recording my time over the years has made me wonder how I can get faster at solving the puzzle. Enter analytics.
 
